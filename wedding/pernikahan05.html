@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding Tema 05 - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        :root {
+            --bg-gradient: #ffffff;
+            --card-bg: #bebab6e0;
+            --text-main: #291b16;
+            --text-sub: #785e52;
+            --title-color: #9a3412;
+            --frame-bg: #ffffff;
+            --btn-bg: #ffedd5;
+            --btn-text: #9a3412;
+            --btn-border: #fdba74;
+            --card-border: #fed7aa;
+            --shadow: 0 25px 50px rgba(154, 52, 18, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --title-color: #fb923c;
+            --frame-bg: #0f172a;
+            --btn-bg: #334155;
+            --btn-text: #fb923c;
+            --btn-border: #475569;
+            --card-border: #475569;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--card-border);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 26px 22px;
+        }
+
+        .slide-nav-tabs {
+            display: flex;
+            background: var(--frame-bg);
+            border-radius: 20px;
+            padding: 4px;
+            border: 1px solid var(--card-border);
+            max-width: 360px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-sub);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .slider-viewport {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .pages-wrapper {
+            display: flex;
+            width: 200%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .page {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 4px;
+            flex-shrink: 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        .festive-header-icons {
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* PERBAIKAN PENEMPATAN TEKS & HIERARKI */
+        .greeting-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .greeting-content .wedding-subtitle {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--title-color);
+            font-weight: 700;
+        }
+
+        .greeting-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-main);
+            font-style: italic;
+        }
+
+        .greeting-content p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            padding: 0 10px;
+            margin-top: 4px;
+        }
+
+        /* Grid 4 Frame Foto Potret */
+        .photo-grid-portrait {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 0 4px;
+            width: 100%;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 3px solid #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .photo-frame.frame-1 { background-image: url('../images/a.jpg'); transform: rotate(-2deg); }
+        .photo-frame.frame-2 { background-image: url('../images/a.jpg'); transform: rotate(2deg); }
+        .photo-frame.frame-3 { background-image: url('../images/a.jpg'); transform: rotate(1.5deg); }
+        .photo-frame.frame-4 { background-image: url('../images/a.jpg'); transform: rotate(-2deg); }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 4px;
+        }
+
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1px solid var(--btn-border);
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            filter: brightness(0.95);
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="card-container">
+        
+        <!-- Tombol Tab Geser Atas -->
+        <div class="slide-nav-tabs">
+            <button id="tab1" class="tab-btn active" onclick="slideToPage(0)">💌 Ucapan Spesial</button>
+            <button id="tab2" class="tab-btn" onclick="slideToPage(1)">📸 Galeri Foto</button>
+        </div>
+
+        <!-- Viewport Pembungkus Geser -->
+        <div class="slider-viewport">
+            <div id="pagesWrapper" class="pages-wrapper">
+                
+                <!-- HALAMAN 1: Teks Ucapan dengan Susunan Nama yang Elegan -->
+                <div class="page">
+                    <div class="festive-header-icons">💍 💐 🕊️ 🥂 ✨</div>
+                    
+                    <div class="greeting-content">
+                        <span class="wedding-subtitle">The Wedding of</span>
+                        <h1>Rizky & Amanda</h1>
+                        <p>Selamat menempuh hidup baru untuk kalian berdua! Semoga cinta dan kebahagiaan senantiasa bertumbuh hari ini, esok, dan selamanya menjadi keluarga sakinah, mawaddah, warahmah. Aamiin! 💍✨</p>
+                    </div>
+                
+                    <button class="action-btn" onclick="slideToPage(1)" style="margin-top: 8px;">Geser ke Galeri Foto ➡</button>
+                </div>
+
+                <!-- HALAMAN 2: 4 Frame Foto & Tombol Navigasi -->
+                <div class="page">
+                    <div class="festive-header-icons" style="font-size: 16px;">🤍 📸 🌸 📸 🤍</div>
+
+                    <!-- 4 Frame Foto Potret Estetik -->
+                    <div class="photo-grid-portrait">
+                        <div class="photo-frame frame-1"></div>
+                        <div class="photo-frame frame-2"></div>
+                        <div class="photo-frame frame-3"></div>
+                        <div class="photo-frame frame-4"></div>
+                    </div>
+
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="slideToPage(0)">⬅ Ucapan</button>
+                        <a href="../katalog.html#wedding" class="action-btn">🏠 Menu Kategori</a>
+                    </div>
+
+                    <!-- Catatan Pemanis Foto -->
+                    <p style="font-size: 10px; color: var(--text-sub); font-style: italic;">
+                        *Foto di atas hanyalah pemanis/contoh. Foto asli disesuaikan pesanan.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        // Fungsi Geser Halaman Halus di dalam Card
+        function slideToPage(pageIndex) {
+            const wrapper = document.getElementById('pagesWrapper');
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+
+            if (pageIndex === 0) {
+                wrapper.style.transform = 'translateX(0%)';
+                tab1.classList.add('active');
+                tab2.classList.remove('active');
+            } else {
+                wrapper.style.transform = 'translateX(-50%)';
+                tab2.classList.add('active');
+                tab1.classList.remove('active');
+            }
+        }
+
+        // Fungsi Mode Gelap / Terang
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

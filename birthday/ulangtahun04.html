@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulang Tahun Tema 04 - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        :root {
+            /* Latar belakang luar putih bersih */
+            --bg-gradient: #ffffff;
+            /* Kotak kartu cerah: Soft Lavender / Pastel Ungu Muda yang manis & kontras */
+            --card-bg: #ede9fe;
+            --text-main: #1e293b;
+            --text-sub: #5b21b6;
+            --title-color: #7c3aed;
+            --frame-bg: #ffffff;
+            --btn-bg: #ddd6fe;
+            --btn-text: #6d28d9;
+            --btn-border: #c4b5fd;
+            --card-border: #c4b5fd;
+            --shadow: 0 15px 35px rgba(124, 58, 237, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --title-color: #a78bfa;
+            --frame-bg: #0f172a;
+            --btn-bg: #334155;
+            --btn-text: #a78bfa;
+            --btn-border: #475569;
+            --card-border: #475569;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 540px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 35px 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            border: 2px solid var(--card-border);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 240px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+        }
+
+        .photo-frame.frame-1 {
+            background-image: url('../images/a.jpg'); 
+            transform: rotate(-2deg);
+        }
+
+        .photo-frame.frame-2 {
+            background-image: url('../images/a.jpg'); 
+            transform: rotate(2deg);
+        }
+
+        .greeting-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--title-color);
+            margin-bottom: 8px;
+        }
+
+        .greeting-content p {
+            font-size: 14px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .back-catalog-btn {
+            display: inline-block;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--btn-border);
+            margin-top: 10px;
+        }
+
+        .back-catalog-btn:hover {
+            filter: brightness(0.95);
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="card-container">
+        <div class="photo-grid">
+            <div class="photo-frame frame-1"></div>
+            <div class="photo-frame frame-2"></div>
+        </div>
+
+        <div class="greeting-content">
+            <h1>Selamat Ulang Tahun!</h1>
+            <p>Semoga bertambahnya usiamu ini membawa limpahan berkah, kebahagiaan yang tak terhingga, serta tercapainya segala impian terbaikmu!</p>
+        </div>
+
+        <div>
+            <a href="../katalog.html#birthday" class="back-catalog-btn">⬅ Kembali ke Kategori</a>
+        </div>
+
+        <p style="font-size: 11px; color: var(--text-sub); font-style: italic; margin-top: -10px;">
+            *Foto di atas hanyalah pemanis/contoh. Foto asli akan disesuaikan dengan pesanan Anda.
+        </p>
+        
+    </div>
+    
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulang Tahun Tema 06 - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        :root {
+            /* Latar belakang luar putih bersih sesuai permintaan */
+            --bg-gradient: #ffffff;
+            /* Kotak kartu cerah: Soft Lavender / Lilac ceria & kontras */
+            --card-bg: #f3e8ff;
+            --text-main: #1e293b;
+            --text-sub: #6b21a8;
+            --title-color: #9333ea;
+            --frame-bg: #ffffff;
+            --btn-bg: #e9d5ff;
+            --btn-text: #7e22ce;
+            --btn-border: #d8b4fe;
+            --card-border: #d8b4fe;
+            --shadow: 0 20px 40px rgba(147, 51, 234, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --title-color: #f472b6;
+            --frame-bg: #0f172a;
+            --btn-bg: #334155;
+            --btn-text: #38bdf8;
+            --btn-border: #475569;
+            --card-border: #334155;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Tombol Mode Gelap/Terang di Pojok Kanan Atas */
+        .theme-container {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Kotak Kartu Utama dengan Desain Unik Tema 06 */
+        .card-container {
+            width: 100%;
+            max-width: 520px;
+            background: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            padding: 35px 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 2px dashed var(--card-border);
+            position: relative;
+        }
+
+        /* Pengaturan Halaman */
+        .page {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        /* Halaman 1: Gaya Surat Spesial */
+        .greeting-header {
+            font-size: 32px;
+            margin-bottom: -5px;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .greeting-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--title-color);
+            margin-bottom: 8px;
+        }
+
+        .greeting-content p {
+            font-size: 14px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        /* Tombol Buka Kado Interaktif */
+        .gift-box-btn {
+            background: var(--btn-bg);
+            border: 2px solid var(--btn-border);
+            padding: 14px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px auto 0 auto;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            width: 85%;
+        }
+
+        .gift-box-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(0.95);
+        }
+
+        .gift-icon {
+            font-size: 26px;
+        }
+
+        .gift-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--btn-text);
+        }
+
+        /* Halaman 2: Grid 4 Foto Gaya Polaroid Miring Artistik */
+        .gallery-title-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: -4px;
+        }
+
+        .photo-grid-polaroid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            padding: 5px 10px;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 125px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 4px solid var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Variasi Kemiringan Foto Agar Terlihat Estetik & Berbeda */
+        .photo-frame.frame-1 { background-image: url('../images/b.jpg'); transform: rotate(-2deg); }
+        .photo-frame.frame-2 { background-image: url('../images/b.jpg'); transform: rotate(2deg); }
+        .photo-frame.frame-3 { background-image: url('../images/b.jpg'); transform: rotate(1.5deg); }
+        .photo-frame.frame-4 { background-image: url('../images/b.jpg'); transform: rotate(-2deg); }
+
+        .nav-btn-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1px solid var(--btn-border);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            filter: brightness(0.95);
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="card-container">
+        
+        <!-- HALAMAN 1: Ucapan & Icon Kartu/Balon -->
+        <div id="page1" class="page active">
+            <div class="greeting-header">🎈 ✨ 🎂</div>
+            <div class="greeting-content">
+                <h1>Spesial Hari Ini!</h1>
+                <p>Semoga kebahagiaan menyelimuti harimu, impian-impian hebatmu tercapai satu persatu, dan hidupmu senantiasa dipenuhi cinta serta tawa bahagia. Selamat ulang tahun!</p>
+            </div>
+
+            <!-- Tombol Icon Kado Interaktif untuk Menuju Galeri -->
+            <div class="gift-box-btn" onclick="goToPage(2)" title="Ketuk untuk buka galeri!">
+                <span class="gift-icon">🎁</span>
+                <span class="gift-text">Klik untuk Buka Foto</span>
+            </div>
+        </div>
+
+        <!-- HALAMAN 2: 4 Frame Foto Polaroid Miring & Icon Pita -->
+        <div id="page2" class="page">
+            <div class="gallery-title-box">
+                <span style="font-size: 24px;">🎀</span>
+                <h2 style="font-size: 18px; color: var(--title-color); font-family: 'Outfit', sans-serif;">Galeri Kenangan Indah</h2>
+                <span style="font-size: 24px;">🎀</span>
+            </div>
+
+            <!-- 4 Frame Foto Gaya Polaroid Estetik -->
+            <div class="photo-grid-polaroid">
+                <div class="photo-frame frame-1"></div>
+                <div class="photo-frame frame-2"></div>
+                <div class="photo-frame frame-3"></div>
+                <div class="photo-frame frame-4"></div>
+            </div>
+
+        
+            <div class="nav-btn-container">
+                <button class="action-btn" onclick="goToPage(1)">⬅ Kembali</button>
+                <a href="../katalog.html#birthday" class="action-btn">🏠 Menu Kategori</a>
+            </div>
+
+            <!-- Catatan Pemanis Foto -->
+            <p style="font-size: 11px; color: var(--text-sub); font-style: italic;">
+                *Foto di atas hanyalah pemanis/contoh. Foto asli akan disesuaikan dengan pesanan Anda.
+            </p>
+
+        </div>
+
+    </div>
+    
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        // Fungsi pindah halaman tanpa reload
+        function goToPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        // Fungsi Mode Gelap / Terang
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

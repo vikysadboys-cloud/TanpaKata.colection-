@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wedding - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Playfair Display & Inter untuk nuansa wedding yang elegan -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        :root {
+            /* Nuansa Wedding: Soft Rose Gold / Champagne & Cream */
+            --bg-gradient: linear-gradient(135deg, #fdf2f2 0%, #fae8e8 35%, #f3e8ff 100%);
+            --card-bg: #ffffff;
+            --text-main: #2d1e2f;
+            --text-sub: #78647c;
+            --title-color: #9f1239;
+            --frame-bg: #fff5f5;
+            --btn-bg: #fff1f2;
+            --btn-text: #be123c;
+            --btn-border: #fecdd3;
+            --card-border: #ffe4e6;
+            --shadow: 0 15px 35px rgba(159, 18, 57, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #2e1065 35%, #180514 100%);
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --title-color: #fb7185;
+            --frame-bg: #0f172a;
+            --btn-bg: #334155;
+            --btn-text: #fda4af;
+            --btn-border: #475569;
+            --card-border: #334155;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 540px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 35px 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            border: 1px solid var(--card-border);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 240px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 3px solid #ffffff;
+        }
+
+        /* Efek miring estetis khas Tanpa Kata Colection */
+        .photo-frame.frame-1 {
+            background-image: url('../images/a.jpg'); 
+            transform: rotate(-2deg);
+        }
+
+        .photo-frame.frame-2 {
+            background-image: url('../images/a.jpg'); 
+            transform: rotate(2deg);
+        }
+
+        .greeting-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .greeting-content .wedding-couple {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 17px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .greeting-content p {
+            font-size: 14px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 15px;
+        }
+
+        .back-catalog-btn {
+            display: inline-block;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--btn-border);
+            margin-top: 10px;
+        }
+
+        .back-catalog-btn:hover {
+            filter: brightness(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="card-container">
+        <div class="photo-grid">
+            <div class="photo-frame frame-1"></div>
+            <div class="photo-frame frame-2"></div>
+        </div>
+
+        <div class="greeting-content">
+            <h1>Happy Wedding!</h1>
+            <div class="wedding-couple">Namamu & Pasanganmu</div>
+            <p>Selamat menempuh hidup baru untuk sahabatku! Semoga cinta dan kebahagiaan senantiasa bertumbuh di antara kalian berdua hari ini, esok, dan selamanya. Menjadi keluarga yang sakinah, mawaddah, warahmah. Aamiin ya rabbal'alamin!</p>
+        </div>
+
+        <div>
+            <!-- Tombol kembali ke kategori pernikahan di katalog -->
+            <a href="../katalog.html#wedding" class="back-catalog-btn">⬅ Kembali ke Kategori</a>
+        </div>
+
+        <p style="font-size: 11px; color: var(--text-sub); font-style: italic; margin-top: -10px;">
+            *Foto dan nama di atas hanyalah pemanis/contoh. Foto asli dan namaakan disesuaikan dengan pesanan Anda.
+        </p>
+    </div>
+    
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection</p>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

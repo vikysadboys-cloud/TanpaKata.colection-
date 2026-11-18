@@ -1,0 +1,493 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+:root {
+    --bg-main: #ffffff;
+    --text-main: #1e293b;
+    --card-bg: #e0f2fe;
+    --card-border: #bae6fd;
+    --card-text: #0369a1;
+    --subtext: #64748b;
+    --shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] {
+    --bg-main: #0f172a;
+    --text-main: #f8fafc;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --card-text: #38bdf8;
+    --subtext: #94a3b8;
+    --shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 16px;
+    position: relative;
+}
+
+/* TOMBOL SETELAN DI POJOK KANAN ATAS */
+.settings-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.settings-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--card-text);
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.settings-btn:hover {
+    transform: scale(1.05);
+}
+
+/* DROPDOWN MENU SETTING */
+.settings-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 42px;
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 200px;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.settings-dropdown.show {
+    display: flex;
+}
+
+.dropdown-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: var(--card-bg);
+    color: var(--card-text);
+}
+
+/* WRAPPER UTAMA */
+.wrapper {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: auto 0;
+}
+
+/* Sistem Frame */
+.frame {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.frame.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER */
+.header-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+    font-size: 12px;
+    color: var(--subtext);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* KATEGORI */
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+}
+
+.category-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 18px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--card-text);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-card span.icon {
+    font-size: 26px;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.15);
+    filter: brightness(0.95);
+}
+
+/* CONTAINER SLIDER TEMPLATE */
+.slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.template-grid {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 4px;
+    width: 100%;
+    scrollbar-width: none;
+}
+
+.template-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Styling Card Thumbnail Penasaran */
+.theme-card {
+    flex: 0 0 calc(50% - 8px);
+    background: var(--bg-main);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 16px;
+    text-align: center;
+    border: 1px solid var(--card-border);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.theme-card:hover {
+    transform: translateY(-3px);
+}
+
+.thumbnail-cover {
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid var(--card-border);
+}
+
+.cover-icon {
+    font-size: 32px;
+}
+
+.cover-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--card-text);
+}
+
+.theme-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.theme-package {
+    font-size: 11px;
+    color: #db2777;
+    font-weight: 700;
+    margin-top: -6px;
+}
+
+/* TOMBOL PANAH GESER */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--card-text);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.slider-btn:hover {
+    background: var(--card-text);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn-left {
+    left: -18px;
+}
+
+.slider-btn-right {
+    right: -18px;
+}
+
+.back-btn {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--card-text);
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    width: 100%;
+}
+
+.back-btn:hover {
+    filter: brightness(0.95);
+}
+
+/* MODAL POPUP */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.modal-card {
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 440px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    animation: scaleUp 0.3s ease;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.modal-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modal-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--card-text);
+}
+
+.item-nominal {
+    font-weight: 700;
+    color: #db2777;
+    font-size: 14px;
+}
+
+.item-desc {
+    font-size: 12px;
+    color: var(--text-main);
+}
+
+.close-modal-btn {
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.close-modal-btn:hover {
+    background: #059669;
+}
+
+/* FOOTER */
+.order-section {
+    text-align: center;
+    width: 100%;
+}
+
+.order-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+    transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.35);
+}
+
+.footer-note {
+    font-size: 11px;
+    color: var(--subtext);
+    text-align: center;
+}
+
+/* Responsif khusus layar HP kecil */
+@media (max-width: 480px) {
+    body {
+        padding: 14px 10px;
+    }
+    .brand-title {
+        font-size: 24px;
+    }
+    .theme-card, .template-item {
+        flex: 0 0 calc(90% - 8px);
+    }
+    .slider-btn {
+        display: none;
+    }
+}
