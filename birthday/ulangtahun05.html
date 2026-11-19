@@ -5,44 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ulang Tahun Tema 05 - Tanpa Kata Colection</title>
     <!-- Google Fonts: Outfit & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.35s ease;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA KARTU, BORDER & TEKS
+           ===================================================================== */
         :root {
-            /* Latar belakang luar putih bersih */
+            /* Latar belakang luar halaman */
             --bg-gradient: #ffffff;
-            /* Kotak kartu cerah: Soft Pink / Pastel Magenta yang ceria & kontras */
+
+            /* [WARNA KARTU] Latar utama cangkang kartu, area dalam & kotak putih */
             --card-bg: #fce7f3;
+            --card-secondary: #fdf2f8;
+            --frame-bg: #ffffff;
+
+            /* [WARNA BORDER] Garis tepi utama, garis aksen dalam & bayangan */
+            --card-border: #f472b6;
+            --border-strong: #db2777;
+            --border-soft: rgba(219, 39, 119, 0.38);
+            --shadow: 0 18px 38px rgba(190, 24, 93, 0.14);
+
+            /* [WARNA TEKS] Judul, badge & paragraf ucapan */
             --text-main: #1e293b;
             --text-sub: #831843;
             --title-color: #be185d;
-            --frame-bg: #ffffff;
+            --accent-pink: #be185d;
+
+            /* [WARNA TOMBOL] Tombol tab atas & tombol aksi */
             --btn-bg: #fbcfe8;
             --btn-text: #9d174d;
-            --btn-border: #f472b6;
-            --card-border: #f472b6;
-            --shadow: 0 15px 35px rgba(190, 24, 93, 0.12);
+            --btn-border: #ec4899;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
             --bg-gradient: #0f172a;
             --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --title-color: #f472b6;
+            --card-secondary: #273549;
             --frame-bg: #0f172a;
+            --card-border: #475569;
+            --border-strong: #f472b6;
+            --border-soft: rgba(244, 114, 182, 0.35);
+            --shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --title-color: #f472b6;
+            --accent-pink: #f472b6;
             --btn-bg: #334155;
             --btn-text: #f472b6;
-            --btn-border: #475569;
-            --card-border: #475569;
-            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            --btn-border: #f472b6;
         }
 
         body {
@@ -53,21 +74,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 64px 18px 24px 18px;
             position: relative;
             overflow-x: hidden;
         }
 
         .theme-container {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 18px;
+            right: 22px;
             z-index: 100;
         }
 
         .theme-btn {
             background: var(--card-bg);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             color: var(--btn-text);
             padding: 8px 14px;
             border-radius: 50px;
@@ -77,117 +98,198 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .theme-btn:hover {
             transform: scale(1.05);
         }
 
-        .card-container {
-            width: 80%;
-            max-width: 400px;
+        /* =====================================================================
+           [KRUSIAL - CANGKANG KARTU & BORDER LUAR]
+           ===================================================================== */
+        .main-shell {
+            width: 100%;
+            max-width: 410px;
             background: var(--card-bg);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--card-border);
-            position: relative;
+            border-radius: 30px;
+            border: 3px solid var(--border-strong);
+            box-shadow: var(--shadow), inset 0 0 0 2px #ffffff, inset 0 0 0 4px var(--border-soft);
+            padding: 18px;
             display: flex;
             flex-direction: column;
             gap: 14px;
-            padding: 22px 20px;
+            position: relative;
         }
 
-        .slide-nav-tabs {
+        .vertical-switcher {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             background: var(--frame-bg);
-            border-radius: 20px;
+            border: 2px solid var(--card-border);
+            border-radius: 22px;
             padding: 4px;
-            border: 1px solid var(--card-border);
-            max-width: 340px;
-            margin: 0 auto;
-            width: 100%;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
         }
 
-        .tab-btn {
+        .v-tab-btn {
             flex: 1;
-            padding: 7px 12px;
-            border: none;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 18px;
             background: transparent;
+            color: var(--text-sub);
             font-size: 12px;
             font-weight: 700;
-            color: var(--text-sub);
-            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
-        .tab-btn.active {
+        .v-tab-btn.active {
             background: var(--btn-bg);
             color: var(--btn-text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-color: var(--btn-border);
+            box-shadow: 0 3px 10px rgba(190, 24, 93, 0.12);
         }
 
-        .slider-viewport {
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT VERTIKAL 2G] Tinggi wadah geser atas-bawah
+           ===================================================================== */
+        .vertical-viewport {
             width: 100%;
+            height: 460px;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 22px;
+            position: relative;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-strong);
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.7);
         }
 
-        .pages-wrapper {
-            display: flex;
-            width: 200%;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        /* [KRUSIAL - BORDER SUDUT VIEWPORT] Aksen siku di pojok kiri-atas & kanan-bawah */
+        .vertical-viewport::before,
+        .vertical-viewport::after {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+            z-index: 5;
         }
 
-        .page {
-            width: 50%;
+        .vertical-viewport::before {
+            top: 7px;
+            left: 7px;
+            border-top: 2.5px solid var(--border-strong);
+            border-left: 2.5px solid var(--border-strong);
+            border-top-left-radius: 8px;
+        }
+
+        .vertical-viewport::after {
+            bottom: 7px;
+            right: 7px;
+            border-bottom: 2.5px solid var(--border-strong);
+            border-right: 2.5px solid var(--border-strong);
+            border-bottom-right-radius: 8px;
+        }
+
+        .vertical-track {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            padding: 4px;
+            height: 200%;
+            transform: translateY(0%);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .sub-card {
+            height: 50%;
+            width: 100%;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
             flex-shrink: 0;
+            position: relative;
+        }
+
+        .sub-card:first-child {
+            border-bottom: 2px dashed var(--border-strong);
+        }
+
+        .card-badge {
+            align-self: center;
+            background: var(--frame-bg);
+            color: var(--accent-pink);
+            border: 1.5px solid var(--border-strong);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 999px;
+            box-shadow: 0 2px 6px rgba(190, 24, 93, 0.08);
         }
 
         .festive-header-icons {
-            font-size: 22px;
+            font-size: 23px;
             display: flex;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .greeting-content h1 {
+        /* =====================================================================
+           [KRUSIAL - KOTAK & WARNA TEKS UCAPAN]
+           ===================================================================== */
+        .greeting-box {
+            background: var(--frame-bg);
+            border-radius: 18px;
+            padding: 16px 14px;
+            text-align: center;
+            border: 2px solid var(--card-border);
+            box-shadow: 0 6px 16px rgba(190, 24, 93, 0.08), inset 0 0 0 2px rgba(252, 231, 243, 0.8);
+            position: relative;
+        }
+
+        .greeting-box h1 {
             font-family: 'Outfit', sans-serif;
             font-size: 24px;
             font-weight: 800;
             color: var(--title-color);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
-        .greeting-content p {
+        .greeting-box p {
             font-size: 13px;
             color: var(--text-sub);
-            line-height: 1.5;
-            padding: 0 5px;
+            line-height: 1.58;
         }
 
+        /* =====================================================================
+           [KRUSIAL - GALERI 4 FOTO] Tinggi & url gambar masing-masing frame
+           ===================================================================== */
         .photo-grid-portrait {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            padding: 0 4px;
         }
 
         .photo-frame {
             width: 100%;
-            height: 180px;
+            height: 122px;
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
-            border: 3px solid var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 3px solid #ffffff;
+            outline: 1.5px solid var(--card-border);
+            border-radius: 14px;
+            box-shadow: 0 6px 14px rgba(190, 24, 93, 0.12);
         }
 
         .photo-frame.frame-1 { background-image: url('../images/a.jpg'); transform: rotate(-2deg); }
@@ -197,33 +299,49 @@
 
         .btn-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 2px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
             background: var(--btn-bg);
             color: var(--btn-text);
-            border: 1px solid var(--btn-border);
-            padding: 8px 16px;
+            border: 1.5px solid var(--border-strong);
+            padding: 8px 15px;
             border-radius: 30px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 3px 8px rgba(190, 24, 93, 0.08);
         }
 
         .action-btn:hover {
-            filter: brightness(0.95);
+            filter: brightness(0.96);
+            transform: translateY(-1px);
         }
 
         .footer-note {
             font-size: 11px;
             color: #64748b;
-            margin-top: 15px;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* [KRUSIAL - RESPONSIF HP] Penyesuaian tinggi & jarak di layar sempit */
+        @media (max-width: 600px) {
+            body { padding: 58px 12px 20px 12px; }
+            .theme-container { top: 12px; right: 12px; }
+            .main-shell { padding: 14px; border-radius: 26px; }
+            .vertical-viewport { height: 435px; }
+            .sub-card { padding: 14px 12px; }
+            .photo-frame { height: 110px; }
+            .greeting-box h1 { font-size: 21px; }
+            .greeting-box p { font-size: 12.5px; }
         }
     </style>
 </head>
@@ -235,27 +353,33 @@
         </button>
     </div>
 
-    <div class="card-container">
-        
-        <div class="slide-nav-tabs">
-            <button id="tab1" class="tab-btn active" onclick="slideToPage(0)">💌 Ucapan Spesial</button>
-            <button id="tab2" class="tab-btn" onclick="slideToPage(1)">📸 Galeri Foto</button>
+    <div class="main-shell">
+        <div class="vertical-switcher">
+            <button id="tabTop" class="v-tab-btn active" onclick="moveVertical(0)">⬆ Kartu 1: Ucapan</button>
+            <button id="tabBottom" class="v-tab-btn" onclick="moveVertical(1)">⬇ Kartu 2: Galeri</button>
         </div>
 
-        <div class="slider-viewport">
-            <div id="pagesWrapper" class="pages-wrapper">
-                
-                <div class="page">
+        <div class="vertical-viewport">
+            <div id="verticalTrack" class="vertical-track">
+
+                <!-- [KRUSIAL - KARTU 1] Ubah judul & ucapan di sini -->
+                <div class="sub-card">
+                    <span class="card-badge">✨ Birthday Card • 01/02</span>
                     <div class="festive-header-icons">🎉 🎂 🎈 🎁 ✨</div>
-                    <div class="greeting-content">
+
+                    <div class="greeting-box">
                         <h1>Selamat Ulang Tahun!</h1>
                         <p>Semoga hari spesialmu dipenuhi dengan kebahagiaan yang melimpah, gelak tawa yang tak terputus, serta tercapainya segala mimpi dan harapan indahmu. You are amazing!</p>
                     </div>
-                      <button class="action-btn" onclick="slideToPage(1)" style="margin: 0 auto; width: fit-content;">Geser ke Galeri Foto ➡</button>
+
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="moveVertical(1)">Geser ke Bawah (Galeri) ⬇</button>
+                    </div>
                 </div>
 
-                <div class="page">
-                    <div class="festive-header-icons" style="font-size: 16px;">🎀 📸 💖 📸 🎀</div>
+                <!-- [KRUSIAL - KARTU 2] Galeri 4 foto & tombol kembali -->
+                <div class="sub-card">
+                    <span class="card-badge">📸 Sweet Moments • 02/02</span>
 
                     <div class="photo-grid-portrait">
                         <div class="photo-frame frame-1"></div>
@@ -265,7 +389,7 @@
                     </div>
 
                     <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(0)">⬅ Ucapan</button>
+                        <button class="action-btn" onclick="moveVertical(0)">⬆ Kembali ke Ucapan</button>
                         <a href="../katalog.html#birthday" class="action-btn">🏠 Menu Kategori</a>
                     </div>
 
@@ -276,32 +400,33 @@
 
             </div>
         </div>
-
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
 
     <script>
-        function slideToPage(pageIndex) {
-            const wrapper = document.getElementById('pagesWrapper');
-            const tab1 = document.getElementById('tab1');
-            const tab2 = document.getElementById('tab2');
+        /* [KRUSIAL - LOGIKA GESER VERTIKAL 2G] Menggeser Kartu 1 (0%) dan Kartu 2 (-50%) */
+        function moveVertical(cardIndex) {
+            const track = document.getElementById('verticalTrack');
+            const tabTop = document.getElementById('tabTop');
+            const tabBottom = document.getElementById('tabBottom');
 
-            if (pageIndex === 0) {
-                wrapper.style.transform = 'translateX(0%)';
-                tab1.classList.add('active');
-                tab2.classList.remove('active');
+            if (cardIndex === 0) {
+                track.style.transform = 'translateY(0%)';
+                tabTop.classList.add('active');
+                tabBottom.classList.remove('active');
             } else {
-                wrapper.style.transform = 'translateX(-50%)';
-                tab2.classList.add('active');
-                tab1.classList.remove('active');
+                track.style.transform = 'translateY(-50%)';
+                tabBottom.classList.add('active');
+                tabTop.classList.remove('active');
             }
         }
 
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';

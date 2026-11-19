@@ -5,42 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ulang Tahun Tema 10 - Tanpa Kata Colection</title>
     <!-- Google Fonts: Outfit & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.35s ease;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA KARTU, BORDER & TEKS
+           ===================================================================== */
         :root {
-            --bg-gradient: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 40%, #fecdd3 100%);
-            --card-bg: #0aeb30;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
-            --title-color: #e11d48;
-            --frame-bg: #fff1f2;
-            --btn-bg: #edf0e4;
-            --btn-text: #e11d48;
-            --btn-border: #68f00d;
-            --card-border: #0ee619;
-            --shadow: 0 20px 40px rgba(225, 29, 72, 0.15);
+            /* Latar belakang luar halaman */
+            --bg-gradient: #ffffff;
+
+            /* [WARNA KARTU] Latar cangkang kartu, area dalam & kotak konten */
+            --card-bg: #e0f2fe;
+            --card-secondary: #f0f9ff;
+            --frame-bg: #ffffff;
+
+            /* [WARNA BORDER] Garis tepi utama, garis aksen & bayangan bingkai ganda */
+            --border-primary: #0369a1;
+            --border-accent: #0ea5e9;
+            --shadow: 0 20px 40px rgba(2, 132, 199, 0.14);
+
+            /* [WARNA TEKS] Judul & isi ucapan */
+            --text-main: #0f172a;
+            --text-sub: #0369a1;
+            --title-color: #0284c7;
+
+            /* [WARNA TOMBOL] Tombol tab 3G, tombol aksi, tombol musik & tema */
+            --btn-bg: #bae6fd;
+            --btn-text: #075985;
+            --btn-border: #0ea5e9;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #4c0519 40%, #1e1b4b 100%);
+            --bg-gradient: #0f172a;
             --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --title-color: #fb7185;
+            --card-secondary: #283548;
             --frame-bg: #0f172a;
-            --btn-bg: #334155;
-            --btn-text: #fb7185;
-            --btn-border: #475569;
-            --card-border: #475569;
+            --border-primary: #38bdf8;
+            --border-accent: #0ea5e9;
             --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --title-color: #38bdf8;
+            --btn-bg: #334155;
+            --btn-text: #7dd3fc;
+            --btn-border: #38bdf8;
         }
 
         body {
@@ -51,22 +70,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 64px 18px 24px 18px;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Tombol Mode Gelap/Terang di Pojok Kanan Atas */
         .theme-container {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 18px;
+            right: 22px;
             z-index: 100;
         }
 
         .theme-btn {
             background: var(--card-bg);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             color: var(--btn-text);
             padding: 8px 14px;
             border-radius: 50px;
@@ -76,96 +94,126 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .theme-btn:hover {
             transform: scale(1.05);
         }
 
-        /* Kontainer Utama Kartu */
-        .card-container {
+        /* =====================================================================
+           [KRUSIAL - CANGKANG KARTU & BORDER GANDA SOLID]
+           ===================================================================== */
+        .main-shell {
             width: 100%;
-            max-width: 440px;
+            max-width: 430px;
             background: var(--card-bg);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--card-border);
-            position: relative;
+            border-radius: 30px;
+            border: 2px solid var(--border-accent);
+            box-shadow: var(--shadow), 0 0 0 3px var(--frame-bg), 0 0 0 5px var(--border-primary);
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 20px 18px 24px 18px;
+            gap: 12px;
+            position: relative;
         }
 
-        /* Navigasi Tab / Kategori di Atas */
-        .slide-nav-tabs {
+        .vertical-switcher-3g {
             display: flex;
             background: var(--frame-bg);
             border-radius: 20px;
-            padding: 3px;
-            border: 1px solid var(--card-border);
-            max-width: 400px;
-            margin: 0 auto 6px auto;
-            width: 100%;
-            gap: 2px;
+            padding: 4px;
+            border: 1.5px solid var(--border-accent);
+            gap: 4px;
         }
 
-        .tab-btn {
+        .v-tab-btn {
             flex: 1;
-            padding: 5px 4px;
-            border: none;
+            padding: 7px 6px;
+            border: 1px solid transparent;
+            border-radius: 16px;
             background: transparent;
-            font-size: 9px;
-            font-weight: 700;
             color: var(--text-sub);
-            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: center;
             white-space: nowrap;
         }
 
-        .tab-btn.active {
+        .v-tab-btn.active {
             background: var(--btn-bg);
             color: var(--btn-text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-color: var(--btn-border);
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.14);
         }
 
-        /* Viewport Pembungkus Geser */
-        .slider-viewport {
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT VERTIKAL 3G] Tinggi wadah geser 3 kartu menurun
+           ===================================================================== */
+        .vertical-viewport-3g {
             width: 100%;
+            height: 500px;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 22px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-primary);
+            box-shadow: inset 0 0 0 2.5px var(--frame-bg);
+            position: relative;
         }
 
-        /* Sistem Halaman Geser 400% (4 Halaman Berjejer) */
-        .pages-wrapper {
-            display: flex;
-            width: 400%;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .page {
-            width: 25%;
-            flex: 0 0 25%;
+        .vertical-track-3g {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 4px;
+            height: 300%;
+            transform: translateY(0%);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Dekorasi Icon Kado Interaktif */
+        .card-3g {
+            height: 33.3333%;
+            width: 100%;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .card-3g:not(:last-child) {
+            border-bottom: 2px solid var(--border-accent);
+            box-shadow: inset 0 -3px 0 -1px var(--frame-bg);
+        }
+
+        .card-label-pill {
+            background: var(--frame-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.4px;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - KADO 2 TAHAP KARTU 1]
+           ===================================================================== */
         .gift-container {
             text-align: center;
-            margin: 6px 0;
             width: 100%;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 16px;
+            padding: 12px 14px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
         }
 
         .interactive-gift {
-            font-size: 56px;
+            font-size: 46px;
             cursor: pointer;
             display: inline-block;
             animation: pulse-gift 2s infinite;
@@ -180,38 +228,47 @@
         .gift-instruction {
             font-size: 11px;
             color: var(--title-color);
-            font-weight: 600;
+            font-weight: 700;
             margin-top: 4px;
         }
 
-        /* Kotak Kado Kedua yang awalnya tersembunyi di Halaman 1 */
         .hidden-gift-box {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.35s ease;
             width: 100%;
             text-align: center;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 12px 14px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Teks Ucapan Halaman 2 & 3 */
+        /* =====================================================================
+           [KRUSIAL - KOTAK & WARNA TEKS UCAPAN KARTU 2]
+           ===================================================================== */
         .text-content-box {
             background: var(--frame-bg);
-            border: 1px solid var(--card-border);
-            padding: 14px;
-            border-radius: 14px;
+            border: 1.5px solid var(--border-accent);
+            border-bottom: 3.5px solid var(--border-primary);
+            padding: 11px 14px;
+            border-radius: 16px;
             text-align: center;
             width: 100%;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.06);
         }
 
         .text-content-box h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 16px;
+            font-size: 15.5px;
+            font-weight: 800;
             color: var(--title-color);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .text-content-box p {
@@ -220,29 +277,30 @@
             line-height: 1.45;
         }
 
-        /* Grid Foto 6 Frame (Halaman 4) */
+        /* =====================================================================
+           [KRUSIAL - GALERI 6 FOTO KARTU 3] Tinggi & url gambar masing-masing frame
+           ===================================================================== */
         .photo-grid-6 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
+            gap: 7px;
             width: 100%;
-            max-width: 380px;
+            max-width: 370px;
             margin: 0 auto;
         }
 
         .photo-frame {
             width: 100%;
-            aspect-ratio: 3 / 4;
-            max-height: 75px;
+            height: 68px;
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
-            border: 3px solid var(--card-bg);
+            border: 3px solid #ffffff;
+            outline: 1.5px solid var(--border-accent);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.1);
         }
 
-        /* Pemanggilan gambar `b.jpg` menggunakan kelas frame individual */
         .photo-frame.frame-1 { background-image: url('../images/b.jpg'); }
         .photo-frame.frame-2 { background-image: url('../images/b.jpg'); }
         .photo-frame.frame-3 { background-image: url('../images/b.jpg'); }
@@ -252,45 +310,48 @@
 
         .btn-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 6px;
+            flex-wrap: wrap;
             width: 100%;
         }
 
         .action-btn {
             background: var(--btn-bg);
             color: var(--btn-text);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             padding: 7px 14px;
             border-radius: 30px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 11px;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .action-btn:hover {
-            filter: brightness(0.95);
+            filter: brightness(0.96);
         }
 
-        /* Pemutar Musik (Music Player) */
+        /* =====================================================================
+           [KRUSIAL - PEMUTAR MUSIK KARTU 3]
+           ===================================================================== */
         .music-player-box {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--frame-bg);
-            border: 1px solid var(--card-border);
+            border: 1.5px solid var(--border-accent);
             padding: 6px 12px;
             border-radius: 25px;
             width: 100%;
         }
 
         .music-info {
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 10.5px;
+            font-weight: 700;
             color: var(--title-color);
             display: flex;
             align-items: center;
@@ -300,10 +361,10 @@
         .music-toggle-btn {
             background: var(--btn-bg);
             color: var(--btn-text);
-            border: 1px solid var(--btn-border);
-            padding: 4px 10px;
+            border: 1.5px solid var(--btn-border);
+            padding: 4px 11px;
             border-radius: 20px;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 700;
             cursor: pointer;
         }
@@ -311,8 +372,18 @@
         .footer-note {
             font-size: 11px;
             color: var(--text-sub);
-            margin-top: 15px;
+            margin-top: 14px;
             text-align: center;
+        }
+
+        /* [KRUSIAL - RESPONSIF HP] Penyesuaian tab & tinggi di layar sempit */
+        @media (max-width: 600px) {
+            body { padding: 58px 12px 20px 12px; }
+            .theme-container { top: 12px; right: 12px; }
+            .main-shell { padding: 13px; }
+            .v-tab-btn { font-size: 10px; padding: 6px 4px; }
+            .vertical-viewport-3g { height: 470px; }
+            .photo-frame { height: 60px; }
         }
     </style>
 </head>
@@ -324,74 +395,54 @@
         </button>
     </div>
 
-    <div id="cardContainer" class="card-container">
-        
-        <!-- Tab Navigasi 4 Halaman -->
-        <div class="slide-nav-tabs">
-            <button id="tab1" class="tab-btn active" onclick="slideToPage(0)">🎁 Buka Kado</button>
-            <button id="tab2" class="tab-btn" onclick="slideToPage(1)">💌 Ucapan</button>
-            <button id="tab3" class="tab-btn" onclick="slideToPage(2)">🎂 Spesial Ulang Tahun</button>
-            <button id="tab4" class="tab-btn" onclick="slideToPage(3)">🎵 Galeri & Musik</button>
+    <div id="cardContainer" class="main-shell">
+        <div class="vertical-switcher-3g">
+            <button id="tab1" class="v-tab-btn active" onclick="moveVertical3G(0)">⬇ Kartu 1: Kado</button>
+            <button id="tab2" class="v-tab-btn" onclick="moveVertical3G(1)">⬇ Kartu 2: Ucapan</button>
+            <button id="tab3" class="v-tab-btn" onclick="moveVertical3G(2)">⬇ Kartu 3: Galeri</button>
         </div>
 
-        <!-- Viewport Pembungkus Geser -->
-        <div class="slider-viewport">
-            <div id="pagesWrapper" class="pages-wrapper">
-                
-                <!-- HALAMAN 1: Kado Pertama yang Membuka Kado Kedua -->
-                <div id="page1" class="page">
-                    <div style="font-size: 14px; text-align: center;">🎉 🎈 ✨</div>
-                    
+        <div class="vertical-viewport-3g">
+            <div id="verticalTrack3G" class="vertical-track-3g">
+
+                <!-- [KRUSIAL - KARTU 1] Kado pertama membuka kado kedua -->
+                <div id="card1" class="card-3g">
+                    <span class="card-label-pill">🎁 Buka Kado • 01/03</span>
+
                     <div id="giftBox1" class="gift-container">
                         <div class="interactive-gift" onclick="revealSecondGift()" title="Sentuh Kado!">🎁</div>
                         <div class="gift-instruction">👆 Sentuh kado pertama untuk membuka kejutannya!</div>
                     </div>
 
-                    <!-- Kado Kedua yang Muncul Setelah Kado Pertama Diklik -->
                     <div id="giftBox2" class="hidden-gift-box">
-                        <div style="font-size: 44px; cursor: pointer; display: inline-block; animation: pulse-gift 2s infinite;" onclick="slideToPage(1)">📦</div>
-                        <div class="gift-instruction">✨ Hore! Kado kedua terbuka. Ketuk untuk lanjut ke Ucapan! ➡</div>
+                        <div style="font-size: 40px; cursor: pointer; display: inline-block; animation: pulse-gift 2s infinite;" onclick="moveVertical3G(1)">📦</div>
+                        <div class="gift-instruction">✨ Kado kedua terbuka! Ketuk untuk ke Kartu 2 (Ucapan) ⬇</div>
                     </div>
 
                     <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(1)">Lanjut ke Ucapan ➡</button>
+                        <button class="action-btn" onclick="moveVertical3G(1)">Geser ke Kartu 2 (Ucapan) ⬇</button>
                     </div>
                 </div>
 
-                <!-- HALAMAN 2: Teks Ucapan & Ikon Dekoratif -->
-                <div id="page2" class="page">
-                    <div style="font-size: 14px; text-align: center;">💌 💖 🌹</div>
-                    
-                    <div class="text-content-box">
-                        <h3>Pesan Spesial Untukmu</h3>
-                        <p>Semoga hari spesial ini membawa kebahagiaan yang luar biasa, senyuman yang tak pernah surut, dan semua impian indahmu perlahan menjadi kenyataan. Tetaplah menjadi pribadi yang hebat dan menginspirasi!</p>
-                    </div>
+                <!-- [KRUSIAL - KARTU 2] Ubah usia, judul & ucapan di sini -->
+                <div id="card2" class="card-3g">
+                    <span class="card-label-pill">🎂 Ucapan & Kue • 02/03</span>
 
-                    <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(0)">⬅ Kado</button>
-                        <button class="action-btn" onclick="slideToPage(2)">Lanjut Kue ➡</button>
-                    </div>
-                </div>
-
-                <!-- HALAMAN 3: Kue Ulang Tahun & Teks Usia -->
-                <div id="page3" class="page">
-                    <div style="font-size: 14px; text-align: center;">🎂 🎉 🥳</div>
-                    
                     <div class="text-content-box">
-                        <div style="font-size: 48px; margin-bottom: 8px;">🎂</div>
+                        <div style="font-size: 32px; margin-bottom: 4px;">🎂</div>
                         <h3>Selamat Ulang Tahun yang ke-X!</h3>
-                        <p>Semoga di pertambahan usia yang baru ini, kamu senantiasa diberikan kesehatan jasmani maupun rohani, rezeki yang berkah dan berlimpah, serta kesuksesan dalam setiap langkah perjalananmu!</p>
+                        <p>Semoga hari spesial ini membawa kebahagiaan yang luar biasa, kesehatan, rezeki berlimpah, serta semua impian indahmu perlahan menjadi kenyataan!</p>
                     </div>
 
                     <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(1)">⬅ Ucapan</button>
-                        <button class="action-btn" onclick="slideToPage(3)">Galeri Foto & Musik ➡</button>
+                        <button class="action-btn" onclick="moveVertical3G(0)">⬆ Kartu 1</button>
+                        <button class="action-btn" onclick="moveVertical3G(2)">Geser ke Kartu 3 (Galeri) ⬇</button>
                     </div>
                 </div>
 
-                <!-- HALAMAN 4: 6 Frame Foto & Pemutar Musik -->
-                <div id="page4" class="page">
-                    <div style="font-size: 12px; text-align: center;">🌟 📸 🎵 📸 🌟</div>
+                <!-- [KRUSIAL - KARTU 3] Galeri 6 foto & pemutar musik -->
+                <div id="card3" class="card-3g">
+                    <span class="card-label-pill">🎵 Galeri & Musik • 03/03</span>
 
                     <div class="photo-grid-6">
                         <div class="photo-frame frame-1"></div>
@@ -408,33 +459,32 @@
                         </div>
                         <button id="musicBtn" class="music-toggle-btn" onclick="toggleMusic()">▶ Putar</button>
                     </div>
-                    <!-- Pemanggilan file audio lokal dari folder audio/hbd.mp3 -->
+                    <!-- [KRUSIAL - FILE AUDIO] Ganti src="../audio/..." sesuai lagu pesanan -->
                     <audio id="bgMusic" loop preload="auto">
                         <source src="../audio/hbd.mp3" type="audio/mpeg">
                         Browser Anda tidak mendukung pemutar audio.
                     </audio>
 
                     <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(2)">⬅ Kembali</button>
+                        <button class="action-btn" onclick="moveVertical3G(1)">⬆ Kartu 2</button>
                         <a href="../katalog.html#birthday" class="action-btn">🏠 Menu Kategori</a>
                     </div>
                 </div>
 
             </div>
         </div>
-
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
 
     <script>
-        // Fungsi Membuka Kado Pertama Menjadi Kado Kedua
+        /* [KRUSIAL - LOGIKA KADO 2 TAHAP] Membuka kado kedua setelah kado pertama diklik */
         function revealSecondGift() {
             document.getElementById('giftBox1').style.display = 'none';
             document.getElementById('giftBox2').style.display = 'block';
         }
 
-        // Fungsi Pemutar Musik
+        /* [KRUSIAL - LOGIKA MUSIK] Putar / jeda audio */
         let isPlaying = false;
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
@@ -454,14 +504,14 @@
             }
         }
 
-        // Fungsi Geser Halaman 400%
-        function slideToPage(pageIndex) {
-            const wrapper = document.getElementById('pagesWrapper');
-            wrapper.style.transform = `translateX(-${pageIndex * 25}%)`;
+        /* [KRUSIAL - LOGIKA GESER VERTIKAL 3G] Menggeser Kartu 1 (0%), Kartu 2 (-33.3333%), Kartu 3 (-66.6666%) */
+        function moveVertical3G(cardIndex) {
+            const track = document.getElementById('verticalTrack3G');
+            track.style.transform = `translateY(-${cardIndex * 33.3333}%)`;
 
-            for (let i = 0; i < 4; i++) {
-                const tab = document.getElementById(`tab${i+1}`);
-                if (i === pageIndex) {
+            for (let i = 0; i < 3; i++) {
+                const tab = document.getElementById(`tab${i + 1}`);
+                if (i === cardIndex) {
                     tab.classList.add('active');
                 } else {
                     tab.classList.remove('active');
@@ -469,10 +519,11 @@
             }
         }
 
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';

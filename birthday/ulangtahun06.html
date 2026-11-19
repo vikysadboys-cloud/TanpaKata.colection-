@@ -5,44 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ulang Tahun Tema 06 - Tanpa Kata Colection</title>
     <!-- Google Fonts: Outfit & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.35s ease;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA KARTU, BORDER & TEKS
+           ===================================================================== */
         :root {
-            /* Latar belakang luar putih bersih sesuai permintaan */
+            /* Latar belakang luar halaman */
             --bg-gradient: #ffffff;
-            /* Kotak kartu cerah: Soft Lavender / Lilac ceria & kontras */
+
+            /* [WARNA KARTU] Latar utama cangkang kartu, area dalam & kotak surat */
             --card-bg: #f3e8ff;
+            --card-secondary: #faf5ff;
+            --frame-bg: #ffffff;
+
+            /* [WARNA BORDER] Garis tepi utama, garis halus & bayangan */
+            --border-main: #9333ea;
+            --border-soft: rgba(147, 51, 234, 0.32);
+            --shadow: 0 20px 40px rgba(147, 51, 234, 0.14);
+
+            /* [WARNA TEKS] Judul & isi ucapan */
             --text-main: #1e293b;
             --text-sub: #6b21a8;
             --title-color: #9333ea;
-            --frame-bg: #ffffff;
+
+            /* [WARNA TOMBOL] Tombol navigasi, tombol kado & tombol tema */
             --btn-bg: #e9d5ff;
             --btn-text: #7e22ce;
             --btn-border: #d8b4fe;
-            --card-border: #d8b4fe;
-            --shadow: 0 20px 40px rgba(147, 51, 234, 0.12);
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
             --bg-gradient: #0f172a;
             --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --title-color: #f472b6;
+            --card-secondary: #28364b;
             --frame-bg: #0f172a;
-            --btn-bg: #334155;
-            --btn-text: #38bdf8;
-            --btn-border: #475569;
-            --card-border: #334155;
+            --border-main: #c084fc;
+            --border-soft: rgba(192, 132, 252, 0.35);
             --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --title-color: #c084fc;
+            --btn-bg: #334155;
+            --btn-text: #d8b4fe;
+            --btn-border: #64748b;
         }
 
         body {
@@ -53,21 +70,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 64px 18px 24px 18px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Tombol Mode Gelap/Terang di Pojok Kanan Atas */
         .theme-container {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 18px;
+            right: 22px;
             z-index: 100;
         }
 
         .theme-btn {
             background: var(--card-bg);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             color: var(--btn-text);
             padding: 8px 14px;
             border-radius: 50px;
@@ -84,120 +101,221 @@
             transform: scale(1.05);
         }
 
-        /* Kotak Kartu Utama dengan Desain Unik Tema 06 */
-        .card-container {
+        /* =====================================================================
+           [KRUSIAL - CANGKANG KARTU & BORDER SUDUT SIKU]
+           ===================================================================== */
+        .main-shell {
             width: 100%;
-            max-width: 520px;
+            max-width: 440px;
             background: var(--card-bg);
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            padding: 35px 25px;
-            text-align: center;
+            border-radius: 28px;
+            border: 2.5px solid var(--border-main);
+            box-shadow: var(--shadow), -6px 6px 0px var(--btn-bg);
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            border: 2px dashed var(--card-border);
+            gap: 14px;
             position: relative;
         }
 
-        /* Pengaturan Halaman */
-        .page {
-            display: none;
-            flex-direction: column;
-            gap: 16px;
+        /* [KRUSIAL - AKSEN BORDER SUDUT] Siku kiri-atas & kanan-bawah */
+        .main-shell::before,
+        .main-shell::after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+            z-index: 4;
         }
 
-        .page.active {
+        .main-shell::before {
+            top: 8px;
+            left: 8px;
+            border-top: 3px solid var(--border-main);
+            border-left: 3px solid var(--border-main);
+            border-top-left-radius: 10px;
+        }
+
+        .main-shell::after {
+            bottom: 8px;
+            right: 8px;
+            border-bottom: 3px solid var(--border-main);
+            border-right: 3px solid var(--border-main);
+            border-bottom-right-radius: 10px;
+        }
+
+        .vertical-switcher {
             display: flex;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-main);
+            border-radius: 22px;
+            padding: 4px;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Halaman 1: Gaya Surat Spesial */
+        .v-tab-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 18px;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .v-tab-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border-color: var(--btn-border);
+            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.12);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT VERTIKAL 2G] Tinggi wadah geser atas-bawah
+           ===================================================================== */
+        .vertical-viewport {
+            width: 100%;
+            height: 495px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-soft);
+            position: relative;
+            z-index: 2;
+        }
+
+        .vertical-track {
+            display: flex;
+            flex-direction: column;
+            height: 200%;
+            transform: translateY(0%);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .sub-card {
+            height: 50%;
+            width: 100%;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sub-card:first-child {
+            border-bottom: 3px double var(--border-main);
+        }
+
         .greeting-header {
-            font-size: 32px;
-            margin-bottom: -5px;
+            font-size: 28px;
             animation: float 2.5s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
-        .greeting-content h1 {
+        /* =====================================================================
+           [KRUSIAL - KOTAK & WARNA TEKS UCAPAN]
+           ===================================================================== */
+        .letter-box {
+            background: var(--frame-bg);
+            border-radius: 18px;
+            padding: 14px;
+            border: 2px solid var(--btn-border);
+            box-shadow: 0 6px 16px rgba(147, 51, 234, 0.08), inset 0 0 0 2px var(--card-secondary);
+        }
+
+        .letter-box h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 26px;
+            font-size: 23px;
             font-weight: 800;
             color: var(--title-color);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .greeting-content p {
-            font-size: 14px;
+        .letter-box p {
+            font-size: 13px;
             color: var(--text-sub);
-            line-height: 1.6;
-            padding: 0 10px;
+            line-height: 1.55;
         }
 
-        /* Tombol Buka Kado Interaktif */
         .gift-box-btn {
             background: var(--btn-bg);
-            border: 2px solid var(--btn-border);
-            padding: 14px 24px;
-            border-radius: 20px;
+            border: 2px solid var(--border-main);
+            padding: 10px 18px;
+            border-radius: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin: 5px auto 0 auto;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            width: 85%;
+            gap: 8px;
+            margin: 0 auto;
+            width: 88%;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.12);
         }
 
         .gift-box-btn:hover {
-            transform: scale(1.03);
-            filter: brightness(0.95);
+            transform: scale(1.02);
+            filter: brightness(0.97);
         }
 
-        .gift-icon {
-            font-size: 26px;
-        }
+        .gift-icon { font-size: 20px; }
 
         .gift-text {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--btn-text);
         }
 
-        /* Halaman 2: Grid 4 Foto Gaya Polaroid Miring Artistik */
         .gallery-title-box {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: -4px;
+            gap: 6px;
         }
 
+        .gallery-title-box h2 {
+            font-size: 16px;
+            color: var(--title-color);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - GALERI 4 POLAROID] Tinggi & url foto masing-masing frame
+           ===================================================================== */
         .photo-grid-polaroid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            padding: 5px 10px;
+            gap: 10px;
+            padding: 2px 6px;
         }
 
         .photo-frame {
             width: 100%;
-            height: 125px;
+            height: 98px;
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
-            border: 4px solid var(--card-bg);
+            border: 3px solid #ffffff;
+            outline: 1.5px solid var(--border-main);
             border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 14px rgba(147, 51, 234, 0.12);
         }
 
-        /* Variasi Kemiringan Foto Agar Terlihat Estetik & Berbeda */
         .photo-frame.frame-1 { background-image: url('../images/b.jpg'); transform: rotate(-2deg); }
         .photo-frame.frame-2 { background-image: url('../images/b.jpg'); transform: rotate(2deg); }
         .photo-frame.frame-3 { background-image: url('../images/b.jpg'); transform: rotate(1.5deg); }
@@ -205,33 +323,47 @@
 
         .nav-btn-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 5px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
             background: var(--btn-bg);
             color: var(--btn-text);
-            border: 1px solid var(--btn-border);
-            padding: 10px 20px;
+            border: 1.5px solid var(--border-main);
+            padding: 7px 15px;
             border-radius: 30px;
-            font-weight: 600;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .action-btn:hover {
-            filter: brightness(0.95);
+            filter: brightness(0.96);
         }
 
         .footer-note {
             font-size: 11px;
             color: #64748b;
-            margin-top: 15px;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* [KRUSIAL - RESPONSIF HP] Penyesuaian layar sempit */
+        @media (max-width: 600px) {
+            body { padding: 58px 12px 20px 12px; }
+            .theme-container { top: 12px; right: 12px; }
+            .main-shell { padding: 14px; }
+            .vertical-viewport { height: 460px; }
+            .sub-card { padding: 14px 12px; }
+            .photo-frame { height: 88px; }
+            .letter-box h1 { font-size: 20px; }
+            .gift-box-btn { width: 96%; padding: 9px 12px; }
         }
     </style>
 </head>
@@ -243,68 +375,84 @@
         </button>
     </div>
 
-    <div class="card-container">
-        
-        <!-- HALAMAN 1: Ucapan & Icon Kartu/Balon -->
-        <div id="page1" class="page active">
-            <div class="greeting-header">🎈 ✨ 🎂</div>
-            <div class="greeting-content">
-                <h1>Spesial Hari Ini!</h1>
-                <p>Semoga kebahagiaan menyelimuti harimu, impian-impian hebatmu tercapai satu persatu, dan hidupmu senantiasa dipenuhi cinta serta tawa bahagia. Selamat ulang tahun!</p>
-            </div>
-
-            <!-- Tombol Icon Kado Interaktif untuk Menuju Galeri -->
-            <div class="gift-box-btn" onclick="goToPage(2)" title="Ketuk untuk buka galeri!">
-                <span class="gift-icon">🎁</span>
-                <span class="gift-text">Klik untuk Buka Foto</span>
-            </div>
+    <div class="main-shell">
+        <div class="vertical-switcher">
+            <button id="tabTop" class="v-tab-btn active" onclick="moveVertical(0)">⬆ Kartu 1: Ucapan</button>
+            <button id="tabBottom" class="v-tab-btn" onclick="moveVertical(1)">⬇ Kartu 2: Galeri</button>
         </div>
 
-        <!-- HALAMAN 2: 4 Frame Foto Polaroid Miring & Icon Pita -->
-        <div id="page2" class="page">
-            <div class="gallery-title-box">
-                <span style="font-size: 24px;">🎀</span>
-                <h2 style="font-size: 18px; color: var(--title-color); font-family: 'Outfit', sans-serif;">Galeri Kenangan Indah</h2>
-                <span style="font-size: 24px;">🎀</span>
+        <div class="vertical-viewport">
+            <div id="verticalTrack" class="vertical-track">
+
+                <!-- [KRUSIAL - KARTU 1] Ubah judul & ucapan di sini -->
+                <div class="sub-card">
+                    <div class="greeting-header">🎈 ✨ 🎂</div>
+
+                    <div class="letter-box">
+                        <h1>Spesial Hari Ini!</h1>
+                        <p>Semoga kebahagiaan menyelimuti harimu, impian-impian hebatmu tercapai satu persatu, dan hidupmu senantiasa dipenuhi cinta serta tawa bahagia. Selamat ulang tahun!</p>
+                    </div>
+
+                    <div class="gift-box-btn" onclick="moveVertical(1)" title="Ketuk untuk buka galeri!">
+                        <span class="gift-icon">🎁</span>
+                        <span class="gift-text">Geser ke Bawah untuk Buka Foto ⬇</span>
+                    </div>
+                </div>
+
+                <!-- [KRUSIAL - KARTU 2] Galeri 4 foto & tombol kembali -->
+                <div class="sub-card">
+                    <div class="gallery-title-box">
+                        <span style="font-size: 18px;">🎀</span>
+                        <h2>Galeri Kenangan Indah</h2>
+                        <span style="font-size: 18px;">🎀</span>
+                    </div>
+
+                    <div class="photo-grid-polaroid">
+                        <div class="photo-frame frame-1"></div>
+                        <div class="photo-frame frame-2"></div>
+                        <div class="photo-frame frame-3"></div>
+                        <div class="photo-frame frame-4"></div>
+                    </div>
+
+                    <div class="nav-btn-container">
+                        <button class="action-btn" onclick="moveVertical(0)">⬆ Kembali ke Atas</button>
+                        <a href="../katalog.html#birthday" class="action-btn">🏠 Menu Kategori</a>
+                    </div>
+
+                    <p style="font-size: 10px; color: var(--text-sub); font-style: italic;">
+                        *Foto di atas hanyalah pemanis/contoh. Foto asli akan disesuaikan dengan pesanan Anda.
+                    </p>
+                </div>
+
             </div>
-
-            <!-- 4 Frame Foto Gaya Polaroid Estetik -->
-            <div class="photo-grid-polaroid">
-                <div class="photo-frame frame-1"></div>
-                <div class="photo-frame frame-2"></div>
-                <div class="photo-frame frame-3"></div>
-                <div class="photo-frame frame-4"></div>
-            </div>
-
-        
-            <div class="nav-btn-container">
-                <button class="action-btn" onclick="goToPage(1)">⬅ Kembali</button>
-                <a href="../katalog.html#birthday" class="action-btn">🏠 Menu Kategori</a>
-            </div>
-
-            <!-- Catatan Pemanis Foto -->
-            <p style="font-size: 11px; color: var(--text-sub); font-style: italic;">
-                *Foto di atas hanyalah pemanis/contoh. Foto asli akan disesuaikan dengan pesanan Anda.
-            </p>
-
         </div>
-
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
 
     <script>
-        // Fungsi pindah halaman tanpa reload
-        function goToPage(pageNumber) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page' + pageNumber).classList.add('active');
+        /* [KRUSIAL - LOGIKA GESER VERTIKAL 2G] Menggeser Kartu 1 (0%) dan Kartu 2 (-50%) */
+        function moveVertical(cardIndex) {
+            const track = document.getElementById('verticalTrack');
+            const tabTop = document.getElementById('tabTop');
+            const tabBottom = document.getElementById('tabBottom');
+
+            if (cardIndex === 0) {
+                track.style.transform = 'translateY(0%)';
+                tabTop.classList.add('active');
+                tabBottom.classList.remove('active');
+            } else {
+                track.style.transform = 'translateY(-50%)';
+                tabBottom.classList.add('active');
+                tabTop.classList.remove('active');
+            }
         }
 
-        // Fungsi Mode Gelap / Terang
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';

@@ -15,34 +15,49 @@
             transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA KARTU, BORDER & TEKS
+           ===================================================================== */
         :root {
-            /* Latar belakang luar putih bersih */
+            /* Latar belakang luar halaman */
             --bg-gradient: #ffffff;
-            /* Kotak kartu cerah: Soft Mint / Pastel Cyan yang segar & kontras */
+
+            /* [WARNA KARTU] Latar kotak kartu & frame foto */
             --card-bg: #ccfbf1;
+            --frame-bg: #ffffff;
+
+            /* [WARNA BORDER] Garis tepi kartu, aksen sudut & bayangan */
+            --card-border: #14b8a6;
+            --accent-border: #0f766e;
+            --shadow: 0 15px 35px rgba(13, 148, 136, 0.14);
+
+            /* [WARNA TEKS] Judul & isi ucapan */
             --text-main: #1e293b;
             --text-sub: #115e59;
             --title-color: #0d9488;
-            --frame-bg: #ffffff;
+
+            /* [WARNA TOMBOL] Tombol navigasi & tombol mode tema */
             --btn-bg: #99f6e4;
             --btn-text: #0f766e;
             --btn-border: #5eead4;
-            --card-border: #5eead4;
-            --shadow: 0 15px 35px rgba(13, 148, 136, 0.12);
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
             --bg-gradient: #0f172a;
             --card-bg: #1e293b;
+            --frame-bg: #0f172a;
+            --card-border: #2dd4bf;
+            --accent-border: #5eead4;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --title-color: #2dd4bf;
-            --frame-bg: #0f172a;
             --btn-bg: #334155;
             --btn-text: #2dd4bf;
             --btn-border: #475569;
-            --card-border: #475569;
-            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         body {
@@ -53,14 +68,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
+            padding: 68px 20px 30px 20px;
             position: relative;
         }
 
         .theme-container {
             position: absolute;
-            top: 25px;
-            right: 30px;
+            top: 20px;
+            right: 24px;
             z-index: 100;
         }
 
@@ -68,9 +83,9 @@
             background: var(--card-bg);
             border: 1px solid var(--btn-border);
             color: var(--btn-text);
-            padding: 10px 16px;
+            padding: 9px 15px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -83,20 +98,54 @@
             transform: scale(1.05);
         }
 
+        /* =====================================================================
+           [KRUSIAL - KARTU & BORDER] UKURAN, WARNA KARTU & BINGKAI UTAMA
+           ===================================================================== */
         .card-container {
             width: 100%;
             max-width: 540px;
             background: var(--card-bg);
             border-radius: 24px;
             box-shadow: var(--shadow);
-            padding: 35px 25px;
+            padding: 38px 28px;
             text-align: center;
             display: flex;
             flex-direction: column;
             gap: 25px;
             border: 2px solid var(--card-border);
+            position: relative;
         }
 
+        /* [KRUSIAL - BORDER SUDUT] Aksen siku pojok atas-kiri & bawah-kanan */
+        .card-container::before,
+        .card-container::after {
+            content: "";
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            border-color: var(--accent-border);
+            pointer-events: none;
+        }
+
+        .card-container::before {
+            top: 10px;
+            left: 10px;
+            border-top: 3px solid var(--accent-border);
+            border-left: 3px solid var(--accent-border);
+            border-top-left-radius: 12px;
+        }
+
+        .card-container::after {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 3px solid var(--accent-border);
+            border-right: 3px solid var(--accent-border);
+            border-bottom-right-radius: 12px;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - TEKS] WARNA & UKURAN JUDUL + PARAGRAF UCAPAN
+           ===================================================================== */
         .greeting-content h1 {
             font-family: 'Outfit', sans-serif;
             font-size: 26px;
@@ -118,6 +167,7 @@
             gap: 15px;
         }
 
+        /* [KRUSIAL - FRAME FOTO] Tinggi & bingkai foto */
         .photo-frame {
             width: 100%;
             height: 240px;
@@ -125,17 +175,18 @@
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
-            border: 3px solid var(--card-bg);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            border: 3px solid #ffffff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
         }
 
+        /* [KRUSIAL - GAMBAR & KEMIRINGAN FOTO] Ganti url(...) sesuai foto pesanan */
         .photo-frame.frame-1 {
-            background-image: url('../images/a.jpg'); 
+            background-image: url('../images/a.jpg');
             transform: rotate(-2deg);
         }
 
         .photo-frame.frame-2 {
-            background-image: url('../images/a.jpg'); 
+            background-image: url('../images/a.jpg');
             transform: rotate(2deg);
         }
 
@@ -149,7 +200,7 @@
             font-weight: 600;
             font-size: 14px;
             transition: all 0.2s ease;
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             margin-top: 10px;
         }
 
@@ -162,6 +213,15 @@
             color: #64748b;
             margin-top: 15px;
         }
+
+        /* [KRUSIAL - RESPONSIF HP] Penyesuaian layar kecil */
+        @media (max-width: 600px) {
+            body { padding: 62px 14px 24px 14px; }
+            .theme-container { top: 14px; right: 14px; }
+            .card-container { padding: 28px 18px; gap: 18px; }
+            .photo-frame { height: 175px; }
+            .greeting-content h1 { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
@@ -173,6 +233,7 @@
     </div>
 
     <div class="card-container">
+        <!-- [KRUSIAL - KONTEN TEKS] Ubah judul & ucapan di sini -->
         <div class="greeting-content">
             <h1>Selamat Ulang Tahun!</h1>
             <p>Semoga hari spesialmu dipenuhi dengan kebahagiaan, gelak tawa, dan semua hal indah yang kamu impikan. Sukses selalu untuk kedepannya!</p>
@@ -192,14 +253,15 @@
         </p>
         
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
 
     <script>
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';
