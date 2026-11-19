@@ -15,33 +15,51 @@
             transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA KARTU, BORDER & TEKS
+           ===================================================================== */
         :root {
-            /* Background luar putih bersih, kotak kartu utama bernuansa Lavender / Ungu Muda Lembut */
+            /* [WARNA LATAR LUAR] Background halaman */
             --bg-gradient: #ffffff;
+
+            /* [WARNA KARTU] Latar kotak kartu Lavender lembut & latar frame foto */
             --card-bg: #faf5ff;
-            --text-main: #1e1b4b;
-            --text-sub: #6b21a8;
-            --title-color: #7c3aed;
             --frame-bg: #ffffff;
+
+            /* [WARNA & MOTIF BORDER] Garis tepi ungu & aksen bingkai atas-bawah */
+            --card-border: #9333ea;
+            --motif-band: #7c3aed;
+            --motif-inner: rgba(124, 58, 237, 0.32);
+            --shadow: 0 18px 38px rgba(124, 58, 237, 0.14);
+
+            /* [WARNA TEKS] Judul, nama pasangan & isi ucapan */
+            --text-main: #1e1b4b;
+            --text-sub: #581c87;
+            --title-color: #7c3aed;
+
+            /* [WARNA TOMBOL] Tombol navigasi & tombol tema */
             --btn-bg: #f3e8ff;
             --btn-text: #7c3aed;
-            --btn-border: #d8b4fe;
-            --card-border: #c084fc;
-            --shadow: 0 15px 35px rgba(124, 58, 237, 0.12);
+            --btn-border: #c084fc;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
             --bg-gradient: #0f172a;
             --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #c084fc;
-            --title-color: #a855f7;
             --frame-bg: #0f172a;
+            --card-border: #c084fc;
+            --motif-band: #a855f7;
+            --motif-inner: rgba(192, 132, 252, 0.35);
+            --shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+            --text-main: #f8fafc;
+            --text-sub: #d8b4fe;
+            --title-color: #c084fc;
             --btn-bg: #334155;
             --btn-text: #d8b4fe;
-            --btn-border: #475569;
-            --card-border: #475569;
-            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            --btn-border: #64748b;
         }
 
         body {
@@ -52,24 +70,24 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
+            padding: 72px 20px 30px 20px;
             position: relative;
         }
 
         .theme-container {
             position: absolute;
-            top: 25px;
-            right: 30px;
+            top: 20px;
+            right: 24px;
             z-index: 100;
         }
 
         .theme-btn {
             background: var(--card-bg);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             color: var(--btn-text);
-            padding: 10px 16px;
+            padding: 9px 15px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -82,52 +100,91 @@
             transform: scale(1.05);
         }
 
+        /* =====================================================================
+           [KRUSIAL - KARTU & MOTIF BORDER PERNIKAHAN]
+           Motif bingkai romantis dengan garis puncak & dasar tebal + frame dalam
+           ===================================================================== */
         .card-container {
             width: 100%;
             max-width: 540px;
             background: var(--card-bg);
-            border-radius: 24px;
+            border-radius: 28px;
             box-shadow: var(--shadow);
-            padding: 35px 25px;
+            padding: 40px 28px;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            border: 2px solid var(--card-border);
+            gap: 22px;
+            border-top: 6px solid var(--motif-band);
+            border-bottom: 6px solid var(--motif-band);
+            border-left: 2px solid var(--card-border);
+            border-right: 2px solid var(--card-border);
+            position: relative;
+        }
+
+        /* [KRUSIAL - MOTIF BINGKAI DALAM] Garis bingkai solid tipis melingkar di dalam */
+        .card-container::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border-radius: 20px;
+            border: 1.5px solid var(--motif-inner);
+            pointer-events: none;
+        }
+
+        /* [KRUSIAL - ORNAMEN FLORAL / MAHKOTA PERNIKAHAN] */
+        .floral-crown {
+            font-size: 18px;
+            letter-spacing: 5px;
+            color: var(--title-color);
+            position: relative;
+            z-index: 1;
         }
 
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            padding: 10px 0;
+            padding: 6px 0;
+            position: relative;
+            z-index: 1;
         }
 
+        /* [KRUSIAL - FRAME FOTO] Tinggi, bingkai & efek miring estetis */
         .photo-frame {
             width: 100%;
-            height: 240px;
+            height: 235px;
             border-radius: 16px;
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
             box-shadow: 0 8px 20px rgba(0,0,0,0.06);
             border: 3px solid #ffffff;
+            outline: 1.5px solid var(--btn-border);
         }
 
-        /* Mengembalikan efek miring estetik yang manis seperti style template 01 */
+        /* [KRUSIAL - GAMBAR & KEMIRINGAN FOTO] Ganti url(...) sesuai foto pesanan */
         .photo-frame.frame-1 {
-            background-image: url('../images/a.jpg'); 
+            background-image: url('../images/a.jpg');
             transform: rotate(-2deg);
         }
 
         .photo-frame.frame-2 {
-            background-image: url('../images/a.jpg'); 
+            background-image: url('../images/a.jpg');
             transform: rotate(2deg);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - TEKS UCAPAN] Pengaturan warna & ukuran judul, nama & doa
+           ===================================================================== */
+        .greeting-content {
+            position: relative;
+            z-index: 1;
         }
 
         .greeting-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--title-color);
             margin-bottom: 6px;
@@ -137,7 +194,7 @@
         .greeting-content .wedding-couple {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 17px;
+            font-size: 18px;
             color: var(--text-main);
             margin-bottom: 12px;
             font-weight: 600;
@@ -146,14 +203,14 @@
         .greeting-content p {
             font-size: 14px;
             color: var(--text-sub);
-            line-height: 1.6;
+            line-height: 1.65;
             padding: 0 10px;
         }
 
         .footer-note {
             font-size: 11px;
             color: #94a3b8;
-            margin-top: 15px;
+            margin-top: 16px;
         }
 
         .back-catalog-btn {
@@ -166,12 +223,44 @@
             font-weight: 600;
             font-size: 14px;
             transition: all 0.2s ease;
-            border: 1px solid var(--btn-border);
-            margin-top: 10px;
+            border: 1.5px solid var(--btn-border);
+            margin-top: 6px;
+            position: relative;
+            z-index: 1;
         }
 
         .back-catalog-btn:hover {
             filter: brightness(0.95);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - RESPONSIF HP & TABLET] Penyesuaian ukuran di layar kecil
+           ===================================================================== */
+        @media (max-width: 600px) {
+            body {
+                padding: 64px 14px 24px 14px;
+            }
+            .theme-container {
+                top: 14px;
+                right: 14px;
+            }
+            .card-container {
+                padding: 30px 18px;
+                gap: 18px;
+            }
+            .photo-frame {
+                height: 170px;
+            }
+            .greeting-content h1 {
+                font-size: 24px;
+            }
+            .greeting-content .wedding-couple {
+                font-size: 16px;
+            }
+            .greeting-content p {
+                font-size: 13px;
+                padding: 0 4px;
+            }
         }
     </style>
 </head>
@@ -184,33 +273,37 @@
     </div>
 
     <div class="card-container">
+        <div class="floral-crown">✿ 💐 ✿</div>
+
         <div class="photo-grid">
             <div class="photo-frame frame-1"></div>
             <div class="photo-frame frame-2"></div>
         </div>
 
+        <!-- [KRUSIAL - KONTEN TEKS] Ubah judul, nama pasangan & ucapan pernikahan di sini -->
         <div class="greeting-content">
             <h1>Happy Wedding!</h1>
             <div class="wedding-couple">Namamu & Pasanganmu</div>
-            <p>Selamat menempuh hidup baru untuk kalian berdua! Semoga hari ini menjadi awal dari perjalanan terindah yang dipenuhi cinta, tawa, dan kebahagiaan yang tak pernah surut. Happy ever after! </p>
+            <p>Selamat menempuh hidup baru untuk kalian berdua! Semoga hari ini menjadi awal dari perjalanan terindah yang dipenuhi cinta, tawa, dan kebahagiaan yang tak pernah surut. Happy ever after!</p>
         </div>
 
         <div>
             <a href="../katalog.html#wedding" class="back-catalog-btn">⬅ Kembali ke Kategori</a>
         </div>
 
-       <p style="font-size: 11px; color: var(--text-sub); font-style: italic; margin-top: -10px;">
-            *Foto dan nama di atas hanyalah pemanis/contoh. Foto asli dan namaakan disesuaikan dengan pesanan Anda.
+        <p style="font-size: 11px; color: var(--text-sub); font-style: italic; margin-top: -8px; position: relative; z-index: 1;">
+            *Foto dan nama di atas hanyalah pemanis/contoh. Foto asli dan nama akan disesuaikan dengan pesanan Anda.
         </p>
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection</p>
 
     <script>
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';

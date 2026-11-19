@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wedding 10 - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Cormorant Garamond & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA CARD, BORDER & TEKS
+           Ubah kode warna di bawah ini untuk menyesuaikan nuansa TanpaRoyal 10.
+           ===================================================================== */
+        :root {
+            /* [WARNA LATAR LUAR] Latar belakang halaman */
+            --bg-gradient: linear-gradient(135deg, #fffbeb 0%, #fef3c7 55%, #fff7ed 100%);
+
+            /* [WARNA CARD] Latar utama card 3G, permukaan dalam & frame foto */
+            --card-bg: #fffbeb;
+            --card-surface: #fef3c7;
+            --frame-bg: #ffffff;
+
+            /* [WARNA & MOTIF BORDER] Bingkai emas royal, aksen sisi & bingkai dalam */
+            --border-primary: #b45309;
+            --border-accent: #f59e0b;
+            --gold-inner: rgba(180, 83, 9, 0.3);
+            --shadow: 0 22px 44px rgba(180, 83, 9, 0.16);
+
+            /* [WARNA TEKS] Judul, nama pasangan & paragraf ucapan/doa */
+            --text-main: #451a03;
+            --text-sub: #78350f;
+            --title-color: #b45309;
+
+            /* [WARNA TOMBOL] Tombol navigasi 3G, audio & tombol tema */
+            --btn-bg: #fde68a;
+            --btn-text: #92400e;
+            --btn-border: #b45309;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #271b0d 55%, #111827 100%);
+            --card-bg: #1e293b;
+            --card-surface: #283548;
+            --frame-bg: #0f172a;
+            --border-primary: #fbbf24;
+            --border-accent: #f59e0b;
+            --gold-inner: rgba(251, 191, 36, 0.34);
+            --shadow: 0 22px 44px rgba(0, 0, 0, 0.5);
+            --text-main: #f8fafc;
+            --text-sub: #fde68a;
+            --title-color: #fbbf24;
+            --btn-bg: #334155;
+            --btn-text: #fde68a;
+            --btn-border: #fbbf24;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* [KRUSIAL - TOMBOL TEMA] Posisi tombol mode gelap/terang */
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - WRAPPER CARD & MOTIF BORDER PERNIKAHAN 10]
+           Bingkai Royal Gold dengan garis kiri-kanan tegas & bingkai ganda dalam
+           ===================================================================== */
+        .royal-shell {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            border: 2.5px solid var(--border-primary);
+            border-left: 7px solid var(--border-primary);
+            border-right: 7px solid var(--border-primary);
+            box-shadow: var(--shadow), inset 0 0 0 3px var(--frame-bg), inset 0 0 0 5px var(--gold-inner);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            position: relative;
+        }
+
+        /* [KRUSIAL - NAVIGASI 3G MENURUN] Tombol pindah ke Halaman 1, 2, dan 3 */
+        .nav-3g {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 5px;
+        }
+
+        .g-btn {
+            padding: 7px 6px;
+            border: 1px solid transparent;
+            border-radius: 15px;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .g-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border-color: var(--btn-border);
+            box-shadow: 0 2px 8px rgba(180, 83, 9, 0.14);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT & TRACK 3G MENURUN KE BAWAH]
+           3 halaman tersusun vertikal; geser pakai translateY(0%), -33.3333%, -66.6666%
+           ===================================================================== */
+        .viewport-3g {
+            width: 100%;
+            height: 585px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--card-surface);
+            border: 2px solid var(--border-accent);
+            position: relative;
+        }
+
+        .track-3g {
+            display: flex;
+            flex-direction: column;
+            height: 300%;
+            transform: translateY(0%);
+        }
+
+        .page-3g {
+            height: 33.3333%;
+            width: 100%;
+            padding: 15px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            flex-shrink: 0;
+            border-bottom: 3px double var(--border-primary);
+        }
+
+        .page-3g:last-child {
+            border-bottom: none;
+        }
+
+        .badge-3g {
+            background: var(--frame-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.4px;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - KOTAK UCAPAN HALAMAN 1]
+           ===================================================================== */
+        .card-panel {
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-top: 4px solid var(--border-primary);
+            border-bottom: 4px solid var(--border-primary);
+            border-radius: 18px;
+            padding: 20px 15px;
+            width: 100%;
+            box-shadow: 0 6px 16px rgba(180, 83, 9, 0.08);
+        }
+
+        .card-panel h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 2px;
+        }
+
+        .couple-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .card-panel p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - GALERI FOTO HALAMAN 2 (4 FRAME) & HALAMAN 3 (2 FRAME)]
+           Ganti url(...) pada .frame-1 s/d .frame-6 sesuai foto pesanan
+           ===================================================================== */
+        .photo-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 285px;
+            margin: 0 auto;
+        }
+
+        .photo-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 285px;
+            margin: 0 auto;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 2.5px solid #ffffff;
+            outline: 1.5px solid var(--border-primary);
+            box-shadow: 0 5px 12px rgba(180, 83, 9, 0.12);
+        }
+
+        .photo-frame.frame-1 { background-image: url('../images/b.jpg'); }
+        .photo-frame.frame-2 { background-image: url('../images/b.jpg'); }
+        .photo-frame.frame-3 { background-image: url('../images/b.jpg'); }
+        .photo-frame.frame-4 { background-image: url('../images/b.jpg'); }
+        .photo-frame.frame-5 { background-image: url('../images/b.jpg'); }
+        .photo-frame.frame-6 { background-image: url('../images/b.jpg'); }
+
+        /* =====================================================================
+           [KRUSIAL - SLOT AUDIO HALAMAN 3] Wadah audio untuk dipanggil sendiri
+           ===================================================================== */
+        .music-slot-box {
+            width: 100%;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 16px;
+            padding: 11px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 6px 14px rgba(180, 83, 9, 0.08);
+        }
+
+        .music-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--title-color);
+        }
+
+        .music-sub {
+            font-size: 11px;
+            color: var(--text-sub);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 7px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 11.5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn:hover {
+            filter: brightness(0.96);
+        }
+
+        .disclaimer-text {
+            font-size: 9.5px;
+            color: var(--text-sub);
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - RESPONSIF LAPTOP & HP] Penyesuaian proporsional di HP
+           ===================================================================== */
+        @media (max-width: 600px) {
+            body { padding: 54px 10px 20px 10px; }
+            .theme-container { top: 10px; right: 12px; }
+            .royal-shell { padding: 12px; border-left-width: 5px; border-right-width: 5px; gap: 9px; }
+            .viewport-3g { height: 555px; }
+            .page-3g { padding: 12px 10px; gap: 6px; }
+            .card-panel { padding: 16px 13px; }
+            .card-panel h1 { font-size: 27px; }
+            .photo-grid-4 { max-width: 245px; gap: 8px; }
+            .photo-grid-2 { max-width: 220px; gap: 8px; }
+            .music-slot-box { padding: 9px 10px; gap: 5px; }
+            .action-btn { padding: 6.5px 11px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="royal-shell">
+        <div class="nav-3g">
+            <button id="btnG1" class="g-btn active" onclick="move3G(0)">⬇ 1. Ucapan</button>
+            <button id="btnG2" class="g-btn" onclick="move3G(1)">⬇ 2. 4 Foto</button>
+            <button id="btnG3" class="g-btn" onclick="move3G(2)">⬇ 3. Lagu</button>
+        </div>
+
+        <div class="viewport-3g">
+            <div id="track3G" class="track-3g">
+
+                <!-- [KRUSIAL - HALAMAN 1] Ubah judul, nama pengantin & ucapan pernikahan -->
+                <div class="page-3g">
+                    <span class="badge-3g">✧ 🥂 Royal Wedding • 01/03</span>
+
+                    <div class="card-panel">
+                        <h1>Happy Wedding</h1>
+                        <div class="couple-names">Namamu & Pasanganmu</div>
+                        <p>Selamat menempuh lembaran baru kehidupan rumah tangga! Semoga dianugerahi cinta yang tulus, kesabaran, dan kebahagiaan abadi setiap hari.</p>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="action-btn" onclick="move3G(1)">Geser ke Halaman 2 ⬇</button>
+                    </div>
+                </div>
+
+                <!-- [KRUSIAL - HALAMAN 2] 4 Frame Foto mempelai -->
+                <div class="page-3g">
+                    <span class="badge-3g">📸 4 Eternal Moments • 02/03</span>
+
+                    <div class="photo-grid-4">
+                        <div class="photo-frame frame-1"></div>
+                        <div class="photo-frame frame-2"></div>
+                        <div class="photo-frame frame-3"></div>
+                        <div class="photo-frame frame-4"></div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="action-btn" onclick="move3G(0)">⬆ Halaman 1</button>
+                        <button class="action-btn" onclick="move3G(2)">⬇ Halaman 3 (Lagu)</button>
+                    </div>
+                </div>
+
+                <!-- [KRUSIAL - HALAMAN 3] 2 Frame Foto di atas slot audio untuk kamu isi & panggil sendiri -->
+                <div class="page-3g">
+                    <span class="badge-3g">🎵 2 Photos & Soundtrack • 03/03</span>
+
+                    <div class="photo-grid-2">
+                        <div class="photo-frame frame-5"></div>
+                        <div class="photo-frame frame-6"></div>
+                    </div>
+
+                    <div class="music-slot-box">
+                        <div class="music-title">Lagu Spesial Pernikahan</div>
+                        <div class="music-sub" id="audioStatus">Klik tombol di bawah untuk memutar lagu</div>
+
+                        <!-- [SLOT AUDIO UTAMA] Wajib dibungkus tag <audio> agar bisa dipanggil JS -->
+                        <audio id="weddingAudio" preload="metadata">
+                            <source src="../audio/wedding.mp3" type="audio/mpeg">
+                        </audio>
+
+                        <!-- [SLOT KONTROL AUDIO] Hubungkan ke fungsi pemutar audio milikmu -->
+                        <div class="btn-row" id="audioSlotControls">
+                            <button type="button" class="action-btn" id="playAudioBtn" onclick="handleAudioSlot()">▶ Putar Lagu</button>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="action-btn" onclick="move3G(1)">⬆ Halaman 2</button>
+                        <a href="../katalog.html#wedding" class="action-btn">🏠 Kembali</a>
+                    </div>
+
+                    <p class="disclaimer-text">
+                        *Foto, nama, dan lagu di atas disesuaikan dengan pesanan Anda.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        /* [KRUSIAL - LOGIKA GESER 3G MENURUN] Geser ke Halaman 1 (0%), 2 (-33.3333%), atau 3 (-66.6666%) */
+        function move3G(index) {
+            const track = document.getElementById('track3G');
+            const buttons = [
+                document.getElementById('btnG1'),
+                document.getElementById('btnG2'),
+                document.getElementById('btnG3')
+            ];
+
+            const offset = -(index * 33.333333);
+            track.style.transform = `translateY(${offset}%)`;
+
+            buttons.forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === index);
+            });
+        }
+
+        /* [KRUSIAL - SLOT PANGGILAN AUDIO HALAMAN 3]
+           Akses elemen audio melalui: const audio = document.getElementById('weddingAudio'); */
+        function handleAudioSlot() {
+            const audio = document.getElementById('weddingAudio');
+            const statusText = document.getElementById('audioStatus');
+            const playBtn = document.getElementById('playAudioBtn');
+
+            if (!audio) {
+                statusText.innerText = 'Elemen #weddingAudio tidak ditemukan';
+                return;
+            }
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    statusText.innerText = 'Lagu sedang diputar';
+                    playBtn.innerText = '⏸ Jeda Lagu';
+                }).catch(() => {
+                    statusText.innerText = 'Gagal memutar file (cek path ../audio/wedding.mp3 atau format file)';
+                });
+            } else {
+                audio.pause();
+                statusText.innerText = 'Lagu dijeda';
+                playBtn.innerText = '▶ Putar Lagu';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('weddingAudio');
+            const statusText = document.getElementById('audioStatus');
+            const playBtn = document.getElementById('playAudioBtn');
+
+            if (!audio) return;
+
+            audio.addEventListener('ended', () => {
+                statusText.innerText = 'Lagu selesai diputar';
+                playBtn.innerText = '▶ Putar Lagu';
+            });
+
+            audio.addEventListener('error', () => {
+                statusText.innerText = 'File lagu belum ditemukan di ../audio/wedding.mp3';
+            });
+        });
+
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

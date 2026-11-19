@@ -3,44 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding Tema 05 - Tanpa Kata Colection</title>
+    <title>Happy Wedding 08 - Tanpa Kata Colection</title>
     <!-- Google Fonts: Playfair Display & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA CARD, BORDER & TEKS
+           ===================================================================== */
         :root {
+            /* [WARNA LATAR LUAR] Latar halaman luar */
             --bg-gradient: #ffffff;
-            --card-bg: #bebab6e0;
-            --text-main: #291b16;
-            --text-sub: #785e52;
-            --title-color: #9a3412;
+
+            /* [WARNA CARD] Latar utama card 2G, area viewport & kotak isi */
+            --card-bg: #fffbeb;
+            --card-secondary: #fef3c7;
             --frame-bg: #ffffff;
-            --btn-bg: #ffedd5;
-            --btn-text: #9a3412;
-            --btn-border: #fdba74;
-            --card-border: #fed7aa;
-            --shadow: 0 25px 50px rgba(154, 52, 18, 0.15);
+
+            /* [WARNA & MOTIF BORDER] Garis bingkai emas hangat & aksen samping */
+            --border-primary: #d97706;
+            --border-accent: #f59e0b;
+            --gold-soft: rgba(217, 119, 6, 0.3);
+            --shadow: 0 20px 40px rgba(217, 119, 6, 0.14);
+
+            /* [WARNA TEKS] Judul, nama mempelai & paragraf ucapan */
+            --text-main: #451a03;
+            --text-sub: #78350f;
+            --title-color: #d97706;
+
+            /* [WARNA TOMBOL] Tombol navigasi 2G, tombol aksi & tombol tema */
+            --btn-bg: #fde68a;
+            --btn-text: #b45309;
+            --btn-border: #d97706;
         }
 
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
         [data-theme="dark"] {
             --bg-gradient: #0f172a;
             --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --title-color: #fb923c;
+            --card-secondary: #283548;
             --frame-bg: #0f172a;
+            --border-primary: #fbbf24;
+            --border-accent: #f59e0b;
+            --gold-soft: rgba(251, 191, 36, 0.32);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            --text-main: #f8fafc;
+            --text-sub: #fde68a;
+            --title-color: #fbbf24;
             --btn-bg: #334155;
-            --btn-text: #fb923c;
-            --btn-border: #475569;
-            --card-border: #475569;
-            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --btn-text: #fde68a;
+            --btn-border: #fbbf24;
         }
 
         body {
@@ -51,21 +72,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 66px 18px 24px 18px;
             position: relative;
             overflow-x: hidden;
         }
 
         .theme-container {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 18px;
+            right: 22px;
             z-index: 100;
         }
 
         .theme-btn {
             background: var(--card-bg);
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             color: var(--btn-text);
             padding: 8px 14px;
             border-radius: 50px;
@@ -75,181 +96,219 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .theme-btn:hover {
             transform: scale(1.05);
         }
 
-        .card-container {
+        /* =====================================================================
+           [KRUSIAL - WRAPPER CARD & MOTIF BORDER PERNIKAHAN 08]
+           Bingkai Champagne-Gold dengan garis kiri-kanan tegas & bingkai ganda
+           ===================================================================== */
+        .main-shell {
             width: 100%;
             max-width: 440px;
             background: var(--card-bg);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--card-border);
-            position: relative;
+            border-radius: 26px;
+            border: 2.5px solid var(--border-primary);
+            border-left: 6px solid var(--border-primary);
+            border-right: 6px solid var(--border-primary);
+            box-shadow: var(--shadow), inset 0 0 0 3px var(--frame-bg), inset 0 0 0 4.5px var(--gold-soft);
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            padding: 26px 22px;
+            gap: 12px;
+            position: relative;
         }
 
-        .slide-nav-tabs {
+        .vertical-switcher {
             display: flex;
             background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
             border-radius: 20px;
             padding: 4px;
-            border: 1px solid var(--card-border);
-            max-width: 360px;
-            margin: 0 auto;
-            width: 100%;
+            gap: 6px;
         }
 
-        .tab-btn {
+        .v-tab-btn {
             flex: 1;
-            padding: 8px 12px;
-            border: none;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 16px;
             background: transparent;
+            color: var(--text-sub);
             font-size: 12px;
             font-weight: 700;
-            color: var(--text-sub);
-            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
         }
 
-        .tab-btn.active {
+        .v-tab-btn.active {
             background: var(--btn-bg);
             color: var(--btn-text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-color: var(--btn-border);
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.14);
         }
 
-        .slider-viewport {
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT & TRACK 2G MENURUN KE BAWAH]
+           Tinggi viewport disesuaikan agar 4 frame potret di halaman 2 muat rapi
+           ===================================================================== */
+        .vertical-viewport {
             width: 100%;
+            height: 600px;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 20px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-accent);
+            position: relative;
         }
 
-        .pages-wrapper {
-            display: flex;
-            width: 200%;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .page {
-            width: 50%;
+        .vertical-track {
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            padding: 4px;
-            flex-shrink: 0;
-            align-items: center;
-            text-align: center;
+            height: 200%;
+            transform: translateY(0%);
         }
 
-        .festive-header-icons {
-            font-size: 22px;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        /* PERBAIKAN PENEMPATAN TEKS & HIERARKI */
-        .greeting-content {
+        .page-2g {
+            height: 50%;
             width: 100%;
+            padding: 16px 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
-        .greeting-content .wedding-subtitle {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .page-2g:first-child {
+            border-bottom: 3px double var(--border-primary);
+        }
+
+        .ornament-tag {
+            background: var(--frame-bg);
             color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 11px;
             font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
         }
 
-        .greeting-content h1 {
+        /* =====================================================================
+           [KRUSIAL - KOTAK & TEKS UCAPAN HALAMAN 1]
+           ===================================================================== */
+        .wedding-box {
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-bottom: 3.5px solid var(--border-primary);
+            border-radius: 18px;
+            padding: 20px 16px;
+            width: 100%;
+            box-shadow: 0 6px 16px rgba(217, 119, 6, 0.08);
+        }
+
+        .wedding-box h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
-            color: var(--text-main);
-            font-style: italic;
+            color: var(--title-color);
+            margin-bottom: 4px;
         }
 
-        .greeting-content p {
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .wedding-box p {
             font-size: 13px;
             color: var(--text-sub);
             line-height: 1.6;
-            padding: 0 10px;
-            margin-top: 4px;
         }
 
-        /* Grid 4 Frame Foto Potret */
-        .photo-grid-portrait {
+        /* =====================================================================
+           [KRUSIAL - 4 FRAME FOTO POTRET HALAMAN 2] Grid 2x2 bentuk potret
+           Ganti url(...) pada .frame-1 s/d .frame-4 sesuai foto pesanan
+           ===================================================================== */
+        .photo-grid-4-portrait {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            padding: 0 4px;
             width: 100%;
+            max-width: 340px;
         }
 
         .photo-frame {
             width: 100%;
-            height: 160px;
+            aspect-ratio: 3 / 4; /* Bentuk potret */
+            border-radius: 12px;
             background-size: cover;
             background-position: center;
             background-color: var(--frame-bg);
-            border: 3px solid #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 2.5px solid #ffffff;
+            outline: 1.5px solid var(--border-primary);
+            box-shadow: 0 5px 12px rgba(217, 119, 6, 0.12);
         }
 
-        .photo-frame.frame-1 { background-image: url('../images/a.jpg'); transform: rotate(-2deg); }
-        .photo-frame.frame-2 { background-image: url('../images/a.jpg'); transform: rotate(2deg); }
-        .photo-frame.frame-3 { background-image: url('../images/a.jpg'); transform: rotate(1.5deg); }
-        .photo-frame.frame-4 { background-image: url('../images/a.jpg'); transform: rotate(-2deg); }
+        .photo-frame.frame-1 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-2 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-3 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-4 { background-image: url('../images/a.jpg'); }
 
         .btn-container {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 4px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
             background: var(--btn-bg);
             color: var(--btn-text);
-            border: 1px solid var(--btn-border);
-            padding: 9px 18px;
+            border: 1.5px solid var(--btn-border);
+            padding: 8px 16px;
             border-radius: 30px;
-            font-weight: 600;
-            font-size: 12.5px;
+            font-weight: 700;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .action-btn:hover {
-            filter: brightness(0.95);
+            filter: brightness(0.96);
         }
 
         .footer-note {
             font-size: 11px;
-            color: #64748b;
-            margin-top: 15px;
+            color: var(--text-sub);
+            margin-top: 14px;
             text-align: center;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - RESPONSIF LAPTOP & HP] Penyesuaian di layar kecil
+           ===================================================================== */
+        @media (max-width: 600px) {
+            body { padding: 58px 12px 20px 12px; }
+            .theme-container { top: 12px; right: 12px; }
+            .main-shell { padding: 14px; border-left-width: 4px; border-right-width: 4px; }
+            .vertical-viewport { height: 505px; }
+            .page-2g { padding: 14px 12px; }
+            .wedding-box h1 { font-size: 24px; }
+            .photo-grid-4-portrait { max-width: 280px; gap: 8px; }
         }
     </style>
 </head>
@@ -261,37 +320,35 @@
         </button>
     </div>
 
-    <div class="card-container">
-        
-        <!-- Tombol Tab Geser Atas -->
-        <div class="slide-nav-tabs">
-            <button id="tab1" class="tab-btn active" onclick="slideToPage(0)">💌 Ucapan Spesial</button>
-            <button id="tab2" class="tab-btn" onclick="slideToPage(1)">📸 Galeri Foto</button>
+    <div class="main-shell">
+        <div class="vertical-switcher">
+            <button id="tab1" class="v-tab-btn active" onclick="move2G(0)">⬇ Halaman 1: Ucapan</button>
+            <button id="tab2" class="v-tab-btn" onclick="move2G(1)">⬇ Halaman 2: 4 Foto</button>
         </div>
 
-        <!-- Viewport Pembungkus Geser -->
-        <div class="slider-viewport">
-            <div id="pagesWrapper" class="pages-wrapper">
-                
-                <!-- HALAMAN 1: Teks Ucapan dengan Susunan Nama yang Elegan -->
-                <div class="page">
-                    <div class="festive-header-icons">💍 💐 🕊️ 🥂 ✨</div>
-                    
-                    <div class="greeting-content">
-                        <span class="wedding-subtitle">The Wedding of</span>
-                        <h1>Rizky & Amanda</h1>
-                        <p>Selamat menempuh hidup baru untuk kalian berdua! Semoga cinta dan kebahagiaan senantiasa bertumbuh hari ini, esok, dan selamanya menjadi keluarga sakinah, mawaddah, warahmah. Aamiin! 💍✨</p>
+        <div class="vertical-viewport">
+            <div id="verticalTrack" class="vertical-track">
+
+                <!-- [KRUSIAL - HALAMAN 1] Ubah judul, nama pasangan & doa di sini -->
+                <div class="page-2g">
+                    <span class="ornament-tag">✧ 🥂 Wedding Card • 01/02</span>
+
+                    <div class="wedding-box">
+                        <h1>Happy Wedding</h1>
+                        <div class="couple-names">Namamu & Pasanganmu</div>
+                        <p>Selamat menempuh lembaran baru rumah tangga! Semoga cinta yang tulus, kesabaran, dan kebahagiaan selalu menyertai kalian setiap hari.</p>
                     </div>
-                
-                    <button class="action-btn" onclick="slideToPage(1)" style="margin-top: 8px;">Geser ke Galeri Foto ➡</button>
+
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="move2G(1)">Geser ke Bawah (4 Foto) ⬇</button>
+                    </div>
                 </div>
 
-                <!-- HALAMAN 2: 4 Frame Foto & Tombol Navigasi -->
-                <div class="page">
-                    <div class="festive-header-icons" style="font-size: 16px;">🤍 📸 🌸 📸 🤍</div>
+                <!-- [KRUSIAL - HALAMAN 2] 4 Frame Foto Potret & navigasi kembali -->
+                <div class="page-2g">
+                    <span class="ornament-tag">📸 4 Lifetime Portraits • 02/02</span>
 
-                    <!-- 4 Frame Foto Potret Estetik -->
-                    <div class="photo-grid-portrait">
+                    <div class="photo-grid-4-portrait">
                         <div class="photo-frame frame-1"></div>
                         <div class="photo-frame frame-2"></div>
                         <div class="photo-frame frame-3"></div>
@@ -299,46 +356,44 @@
                     </div>
 
                     <div class="btn-container">
-                        <button class="action-btn" onclick="slideToPage(0)">⬅ Ucapan</button>
+                        <button class="action-btn" onclick="move2G(0)">⬆ Halaman 1</button>
                         <a href="../katalog.html#wedding" class="action-btn">🏠 Menu Kategori</a>
                     </div>
 
-                    <!-- Catatan Pemanis Foto -->
                     <p style="font-size: 10px; color: var(--text-sub); font-style: italic;">
-                        *Foto di atas hanyalah pemanis/contoh. Foto asli disesuaikan pesanan.
+                        *Foto dan nama di atas hanyalah pemanis/contoh. Foto asli & nama disesuaikan pesanan.
                     </p>
-
                 </div>
+
             </div>
         </div>
-
     </div>
-    
+
     <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
 
     <script>
-        // Fungsi Geser Halaman Halus di dalam Card
-        function slideToPage(pageIndex) {
-            const wrapper = document.getElementById('pagesWrapper');
+        /* [KRUSIAL - LOGIKA GESER 2G MENURUN] Menggeser ke Halaman 1 (0%) atau Halaman 2 (-50%) */
+        function move2G(pageIndex) {
+            const track = document.getElementById('verticalTrack');
             const tab1 = document.getElementById('tab1');
             const tab2 = document.getElementById('tab2');
 
             if (pageIndex === 0) {
-                wrapper.style.transform = 'translateX(0%)';
+                track.style.transform = 'translateY(0%)';
                 tab1.classList.add('active');
                 tab2.classList.remove('active');
             } else {
-                wrapper.style.transform = 'translateX(-50%)';
+                track.style.transform = 'translateY(-50%)';
                 tab2.classList.add('active');
                 tab1.classList.remove('active');
             }
         }
 
-        // Fungsi Mode Gelap / Terang
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
         function toggleTheme() {
             const html = document.documentElement;
             const themeText = document.getElementById('themeText');
-            
+
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
                 themeText.innerText = 'Mode Gelap';

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wedding 08 - Tanpa Kata Colection</title>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - MODE TERANG] KOMPONEN GANTI WARNA CARD, BORDER & TEKS
+           ===================================================================== */
+        :root {
+            /* [WARNA LATAR LUAR] Latar halaman luar */
+            --bg-gradient: #ffffff;
+
+            /* [WARNA CARD] Latar utama card 2G, area viewport & kotak isi */
+            --card-bg: #fffbeb;
+            --card-secondary: #fef3c7;
+            --frame-bg: #ffffff;
+
+            /* [WARNA & MOTIF BORDER] Garis bingkai emas hangat & aksen samping */
+            --border-primary: #d97706;
+            --border-accent: #f59e0b;
+            --gold-soft: rgba(217, 119, 6, 0.3);
+            --shadow: 0 20px 40px rgba(217, 119, 6, 0.14);
+
+            /* [WARNA TEKS] Judul, nama mempelai & paragraf ucapan */
+            --text-main: #451a03;
+            --text-sub: #78350f;
+            --title-color: #d97706;
+
+            /* [WARNA TOMBOL] Tombol navigasi 2G, tombol aksi & tombol tema */
+            --btn-bg: #fde68a;
+            --btn-text: #b45309;
+            --btn-border: #d97706;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - MODE GELAP] KOMPONEN GANTI WARNA SAAT DARK THEME AKTIF
+           ===================================================================== */
+        [data-theme="dark"] {
+            --bg-gradient: #0f172a;
+            --card-bg: #1e293b;
+            --card-secondary: #283548;
+            --frame-bg: #0f172a;
+            --border-primary: #fbbf24;
+            --border-accent: #f59e0b;
+            --gold-soft: rgba(251, 191, 36, 0.32);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            --text-main: #f8fafc;
+            --text-sub: #fde68a;
+            --title-color: #fbbf24;
+            --btn-bg: #334155;
+            --btn-text: #fde68a;
+            --btn-border: #fbbf24;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - WRAPPER CARD & MOTIF BORDER PERNIKAHAN 08]
+           Bingkai Champagne-Gold dengan garis kiri-kanan tegas & bingkai ganda
+           ===================================================================== */
+        .main-shell {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 26px;
+            border: 2.5px solid var(--border-primary);
+            border-left: 6px solid var(--border-primary);
+            border-right: 6px solid var(--border-primary);
+            box-shadow: var(--shadow), inset 0 0 0 3px var(--frame-bg), inset 0 0 0 4.5px var(--gold-soft);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            position: relative;
+        }
+
+        .vertical-switcher {
+            display: flex;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 6px;
+        }
+
+        .v-tab-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 16px;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .v-tab-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border-color: var(--btn-border);
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.14);
+        }
+
+        /* =====================================================================
+           [KRUSIAL - VIEWPORT & TRACK 2G MENURUN KE BAWAH]
+           Tinggi viewport lega agar 4 frame potret + tombol di halaman 2 rapih
+           ===================================================================== */
+        .vertical-viewport {
+            width: 100%;
+            height: 575px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-accent);
+            position: relative;
+        }
+
+        .vertical-track {
+            display: flex;
+            flex-direction: column;
+            height: 200%;
+            transform: translateY(0%);
+        }
+
+        .page-2g {
+            height: 50%;
+            width: 100%;
+            padding: 15px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .page-2g:first-child {
+            border-bottom: 3px double var(--border-primary);
+        }
+
+        .ornament-tag {
+            background: var(--frame-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - KOTAK & TEKS UCAPAN HALAMAN 1]
+           ===================================================================== */
+        .wedding-box {
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-bottom: 3.5px solid var(--border-primary);
+            border-radius: 18px;
+            padding: 20px 16px;
+            width: 100%;
+            box-shadow: 0 6px 16px rgba(217, 119, 6, 0.08);
+        }
+
+        .wedding-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 4px;
+        }
+
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .wedding-box p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - 4 FRAME FOTO POTRET HALAMAN 2] Grid 2x2 simetris potret
+           Ganti url(...) pada .frame-1 s/d .frame-4 sesuai foto pesanan
+           ===================================================================== */
+        .photo-grid-4-portrait {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 285px;
+            margin: 0 auto;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 2.5px solid #ffffff;
+            outline: 1.5px solid var(--border-primary);
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.12);
+        }
+
+        .photo-frame.frame-1 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-2 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-3 { background-image: url('../images/a.jpg'); }
+        .photo-frame.frame-4 { background-image: url('../images/a.jpg'); }
+
+        .btn-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 11.5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn:hover {
+            filter: brightness(0.96);
+        }
+
+        .disclaimer-text {
+            font-size: 9.5px;
+            color: var(--text-sub);
+            font-style: italic;
+            line-height: 1.35;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* =====================================================================
+           [KRUSIAL - RESPONSIF LAPTOP & HP] Penyesuaian proporsional di HP
+           ===================================================================== */
+        @media (max-width: 600px) {
+            body { padding: 54px 10px 20px 10px; }
+            .theme-container { top: 10px; right: 12px; }
+            .main-shell { padding: 12px; border-left-width: 4px; border-right-width: 4px; gap: 9px; }
+            .vertical-viewport { height: 540px; }
+            .page-2g { padding: 12px 10px; gap: 6px; }
+            .wedding-box { padding: 16px 13px; }
+            .wedding-box h1 { font-size: 24px; }
+            .couple-names { font-size: 15.5px; }
+            .wedding-box p { font-size: 12.5px; }
+            .photo-grid-4-portrait { max-width: 245px; gap: 8px; }
+            .action-btn { padding: 7px 12px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="main-shell">
+        <div class="vertical-switcher">
+            <button id="tab1" class="v-tab-btn active" onclick="move2G(0)">⬇ Halaman 1: Ucapan</button>
+            <button id="tab2" class="v-tab-btn" onclick="move2G(1)">⬇ Halaman 2: 4 Foto</button>
+        </div>
+
+        <div class="vertical-viewport">
+            <div id="verticalTrack" class="vertical-track">
+
+                <!-- [KRUSIAL - HALAMAN 1] Ubah judul, nama pasangan & doa di sini -->
+                <div class="page-2g">
+                    <span class="ornament-tag">✧ 🥂 Wedding Card • 01/02</span>
+
+                    <div class="wedding-box">
+                        <h1>Happy Wedding</h1>
+                        <div class="couple-names">Namamu & Pasanganmu</div>
+                        <p>Selamat menempuh lembaran baru rumah tangga! Semoga cinta yang tulus, kesabaran, dan kebahagiaan selalu menyertai kalian setiap hari.</p>
+                    </div>
+
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="move2G(1)">Geser ke Bawah (4 Foto) ⬇</button>
+                    </div>
+                </div>
+
+                <!-- [KRUSIAL - HALAMAN 2] 4 Frame Foto Potret & navigasi kembali -->
+                <div class="page-2g">
+                    <span class="ornament-tag">📸 4 Lifetime Portraits • 02/02</span>
+
+                    <div class="photo-grid-4-portrait">
+                        <div class="photo-frame frame-1"></div>
+                        <div class="photo-frame frame-2"></div>
+                        <div class="photo-frame frame-3"></div>
+                        <div class="photo-frame frame-4"></div>
+                    </div>
+
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="move2G(0)">⬆ Halaman 1</button>
+                        <a href="../katalog.html#wedding" class="action-btn">🏠 Menu Kategori</a>
+                    </div>
+
+                    <p class="disclaimer-text">
+                        *Foto dan nama di atas hanyalah pemanis/contoh. Foto asli & nama disesuaikan pesanan.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        /* [KRUSIAL - LOGIKA GESER 2G MENURUN] Menggeser ke Halaman 1 (0%) atau Halaman 2 (-50%) */
+        function move2G(pageIndex) {
+            const track = document.getElementById('verticalTrack');
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+
+            if (pageIndex === 0) {
+                track.style.transform = 'translateY(0%)';
+                tab1.classList.add('active');
+                tab2.classList.remove('active');
+            } else {
+                track.style.transform = 'translateY(-50%)';
+                tab2.classList.add('active');
+                tab1.classList.remove('active');
+            }
+        }
+
+        /* [KRUSIAL - LOGIKA TEMA] Mengganti mode gelap / terang */
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>
