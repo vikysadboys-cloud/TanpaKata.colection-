@@ -52,7 +52,8 @@ body {
 .top-navbar {
     width: 100%;
     max-width: 760px;
-    min-height: 44px;
+    height: 44px;
+    max-height: 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,11 +69,18 @@ body {
     text-decoration: none;
     color: var(--text-main);
     flex-shrink: 0;
+    max-height: 36px;
 }
 
+.top-navbar .brand-logo-link img,
 .navbar-logo-img {
+    display: block;
     width: 34px;
     height: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    max-height: 34px;
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
@@ -589,11 +597,17 @@ body {
         padding: 14px 10px;
     }
     .top-navbar {
-        min-height: 38px;
+        height: 38px;
+        max-height: 38px;
     }
+    .top-navbar .brand-logo-link img,
     .navbar-logo-img {
         width: 28px;
         height: 28px;
+        min-width: 28px;
+        max-width: 28px;
+        min-height: 28px;
+        max-height: 28px;
         border-radius: 6px;
     }
     .navbar-brand-main {
