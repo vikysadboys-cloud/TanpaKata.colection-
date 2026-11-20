@@ -12,74 +12,89 @@
 </head>
 <body>
 
-    <!-- [KRUSIAL - HEADER NAVIGASI PROFESIONAL: LOGO KIRI + MENU KANAN] -->
+    <!-- HEADER ATAS: JUDUL SINGKAT KIRI + IKON MENU KANAN -->
     <header class="top-navbar">
-        <a href="#frame-home" class="brand-logo-link" onclick="switchFrame('frame-home')">
-            <!-- Pastikan file logo disimpan di folder images/logo.png -->
-            <img src="images/logo.png" alt="Logo Tanpakata Collection" class="navbar-logo-img">
+        <a
+            href="#frame-home"
+            class="brand-logo-link"
+            onclick="switchFrame('frame-home')"
+        >
             <div class="navbar-brand-text">
                 <span class="navbar-brand-main">TANPAKATA</span>
                 <span class="navbar-brand-sub">COLLECTION</span>
             </div>
         </a>
 
-        <!-- TOMBOL IKON MENU KANAN ATAS -->
-        <div class="menu-container">
+        <div class="menu-container" id="settingsContainer">
             <button
                 type="button"
                 class="hamburger-btn"
                 id="menuToggleBtn"
-                aria-label="Buka Menu"
-                onclick="toggleMainMenu(event)"
+                aria-label="Menu"
+                onclick="toggleSettingsMenu(event)"
             >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.3"
+                    stroke-linecap="round"
+                >
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-                <span class="menu-btn-label" data-i18n="menu_label">Menu</span>
+                <span data-i18n="menu_label">Menu</span>
             </button>
 
-            <!-- DROPDOWN MENU: HARGA, PROMO, TENTANG WEB, SETELAN -->
-            <div id="mainMenuDropdown" class="main-menu-dropdown">
-                <button type="button" class="dropdown-item" onclick="openPriceModal()">
-                    <span class="menu-icon">📋</span>
-                    <span data-i18n="menu_price">Menu Harga</span>
+            <div id="settingsDropdown" class="settings-dropdown">
+                <button
+                    type="button"
+                    class="dropdown-item"
+                    onclick="openPriceModal()"
+                >
+                    📋 <span data-i18n="menu_price">Menu Harga</span>
                 </button>
-                <button type="button" class="dropdown-item" onclick="openPromoModal()">
-                    <span class="menu-icon">🔥</span>
-                    <span data-i18n="menu_promo">Menu Promo</span>
+                <button
+                    type="button"
+                    class="dropdown-item"
+                    onclick="openPromoModal()"
+                >
+                    🔥 <span data-i18n="menu_promo">Menu Promo</span>
                 </button>
-                <button type="button" class="dropdown-item" onclick="openAboutModal()">
-                    <span class="menu-icon">ℹ️</span>
-                    <span data-i18n="about_web">Tentang Web</span>
+                <button
+                    type="button"
+                    class="dropdown-item"
+                    onclick="openAboutModal()"
+                >
+                    ❓ <span data-i18n="about_web">Tentang Web</span>
                 </button>
-
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-section-title" data-i18n="settings">Pengaturan</div>
-
-                <button type="button" class="dropdown-item" onclick="toggleTheme()">
-                    <span class="menu-icon">🌓</span>
-                    <span id="themeText">Mode Gelap</span>
+                <button
+                    type="button"
+                    class="dropdown-item"
+                    onclick="toggleTheme()"
+                >
+                    🌓 <span id="themeText">Mode Gelap</span>
                 </button>
-                <button type="button" class="dropdown-item" onclick="toggleLanguage()">
-                    <span class="menu-icon">🌐</span>
-                    <span id="langText">English</span>
+                <button
+                    type="button"
+                    class="dropdown-item"
+                    onclick="toggleLanguage()"
+                >
+                    🌐 <span id="langText">English</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- KONTEN UTAMA -->
-    <main class="wrapper">
+    <div class="wrapper">
 
-        <!-- HERO / HEADER -->
+        <!-- HEADER -->
         <div class="header-section">
-            <span class="hero-badge" data-i18n="subtitle">✨ Kartu Ucapan Digital ✨</span>
             <h1 class="brand-title">Tanpa Kata Collection</h1>
-            <p class="hero-tagline" data-i18n="hero_desc">
-                Pilih tema ucapan digital estetik, praktis &amp; langsung siap dibagikan
-            </p>
+            <p class="brand-subtitle" data-i18n="subtitle">✨ Kartu Ucapan Digital ✨</p>
         </div>
 
         <!-- FRAME 1: KATEGORI UTAMA -->
@@ -87,530 +102,756 @@
             <p class="section-title" data-i18n="choose_category">Silahkan Pilih Kategori Ucapan</p>
             <div class="category-grid">
                 <div class="category-card" onclick="switchFrame('frame-birthday')">
-                    <div class="icon-circle">🎂</div>
-                    <span class="cat-name" data-i18n="cat_birthday">Ulang Tahun</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">🎂</span>
+                    <span data-i18n="cat_birthday">Ulang Tahun</span>
                 </div>
                 <div class="category-card" onclick="switchFrame('frame-wedding')">
-                    <div class="icon-circle">💍</div>
-                    <span class="cat-name" data-i18n="cat_wedding">Pernikahan</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">💍</span>
+                    <span data-i18n="cat_wedding">Pernikahan</span>
                 </div>
                 <div class="category-card" onclick="switchFrame('frame-christmas')">
-                    <div class="icon-circle">🎄</div>
-                    <span class="cat-name" data-i18n="cat_christmas">Natal</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">🎄</span>
+                    <span data-i18n="cat_christmas">Natal</span>
                 </div>
                 <div class="category-card" onclick="switchFrame('frame-newyear')">
-                    <div class="icon-circle">🎆</div>
-                    <span class="cat-name" data-i18n="cat_newyear">Tahun Baru</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">🎆</span>
+                    <span data-i18n="cat_newyear">Tahun Baru</span>
                 </div>
                 <div class="category-card" onclick="switchFrame('frame-valentine')">
-                    <div class="icon-circle">💌</div>
-                    <span class="cat-name" data-i18n="cat_valentine">Hari Valentine</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">💌</span>
+                    <span data-i18n="cat_valentine">Hari Valentine</span>
                 </div>
                 <div class="category-card" onclick="switchFrame('frame-eid')">
-                    <div class="icon-circle">🌙</div>
-                    <span class="cat-name" data-i18n="cat_eid">Idul Fitri</span>
-                    <span class="cat-meta" data-i18n="cat_meta">10 Tema • Mulai Rp 3rb</span>
+                    <span class="icon">🌙</span>
+                    <span data-i18n="cat_eid">Idul Fitri</span>
                 </div>
             </div>
         </div>
-
-        <!-- FRAME 2: KATEGORI TEMPLATE (1-4 TanpaHemat, 5-8 TanpaMedium, 9-10 TanpaRoyal) -->
 
         <!-- 1. Birthday / Ulang Tahun -->
         <div id="frame-birthday" class="frame">
             <p class="section-title" data-i18n="title_birthday">Kategori: Ulang Tahun</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('birthday-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('birthday-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="birthday-grid" class="template-grid">
                     <div class="template-item">
                         <a href="birthday/ulangtahun01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_1">Ulang Tahun Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_2">Ulang Tahun Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_3">Ulang Tahun Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_4">Ulang Tahun Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_5">Ulang Tahun Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_6">Ulang Tahun Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_7">Ulang Tahun Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_8">Ulang Tahun Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_9">Ulang Tahun Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="birthday/ulangtahun10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_birthday_10">Ulang Tahun Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('birthday-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('birthday-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- 2. Wedding / Pernikahan -->
         <div id="frame-wedding" class="frame">
             <p class="section-title" data-i18n="title_wedding">Kategori: Pernikahan</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('wedding-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('wedding-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="wedding-grid" class="template-grid">
                     <div class="template-item">
                         <a href="wedding/pernikahan01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_1">Pernikahan Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_2">Pernikahan Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_3">Pernikahan Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_4">Pernikahan Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_5">Pernikahan Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_6">Pernikahan Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_7">Pernikahan Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_8">Pernikahan Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_9">Pernikahan Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="wedding/pernikahan10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_wedding_10">Pernikahan Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('wedding-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('wedding-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- 3. Christmas / Natal -->
         <div id="frame-christmas" class="frame">
             <p class="section-title" data-i18n="title_christmas">Kategori: Natal</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('natal-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('natal-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="natal-grid" class="template-grid">
                     <div class="template-item">
                         <a href="natal/natal01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_1">Natal Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_2">Natal Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_3">Natal Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_4">Natal Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_5">Natal Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_6">Natal Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_7">Natal Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_8">Natal Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_9">Natal Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="natal/natal10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_christmas_10">Natal Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('natal-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('natal-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- 4. New Year / Tahun Baru -->
         <div id="frame-newyear" class="frame">
             <p class="section-title" data-i18n="title_newyear">Kategori: Tahun Baru</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('newyear-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('newyear-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="newyear-grid" class="template-grid">
                     <div class="template-item">
                         <a href="newyear/tahunbaru01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_1">Tahun Baru Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_2">Tahun Baru Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_3">Tahun Baru Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_4">Tahun Baru Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_5">Tahun Baru Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_6">Tahun Baru Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_7">Tahun Baru Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_8">Tahun Baru Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_9">Tahun Baru Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="newyear/tahunbaru10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_newyear_10">Tahun Baru Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('newyear-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('newyear-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- 5. Valentine / Hari Valentine -->
         <div id="frame-valentine" class="frame">
             <p class="section-title" data-i18n="title_valentine">Kategori: Hari Valentine</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('valentine-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('valentine-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="valentine-grid" class="template-grid">
                     <div class="template-item">
                         <a href="valentine/valentine01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_1">Valentine Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_2">Valentine Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_3">Valentine Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_4">Valentine Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_5">Valentine Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_6">Valentine Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_7">Valentine Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_8">Valentine Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_9">Valentine Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="valentine/valentine10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_valentine_10">Valentine Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('valentine-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('valentine-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- 6. Eid / Idul Fitri -->
         <div id="frame-eid" class="frame">
             <p class="section-title" data-i18n="title_eid">Kategori: Idul Fitri</p>
             <div class="slider-container">
-                <button type="button" class="slider-btn slider-btn-left" onclick="geserKatalog('eid-grid', -1)">❮</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-left"
+                    onclick="geserKatalog('eid-grid', -1)"
+                >
+                    ❮
+                </button>
                 <div id="eid-grid" class="template-grid">
                     <div class="template-item">
                         <a href="eid/eid01.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_1">Idul Fitri Tema 01</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid02.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_2">Idul Fitri Tema 02</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid03.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_3">Idul Fitri Tema 03</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid04.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_4">Idul Fitri Tema 04</div>
                             <div class="theme-package">TanpaHemat</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid05.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_5">Idul Fitri Tema 05</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid06.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_6">Idul Fitri Tema 06</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid07.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_7">Idul Fitri Tema 07</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid08.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_8">Idul Fitri Tema 08</div>
                             <div class="theme-package">TanpaMedium</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid09.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_9">Idul Fitri Tema 09</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                     <div class="template-item">
                         <a href="eid/eid10.html" class="theme-card">
-                            <div class="thumbnail-cover"><div class="cover-text" data-i18n="preview_tap">Ketuk untuk Pratinjau</div></div>
+                            <div class="thumbnail-cover">
+                                <div class="cover-text">Ketuk untuk Pratinjau</div>
+                            </div>
                             <div class="theme-title" data-i18n="t_eid_10">Idul Fitri Tema 10</div>
                             <div class="theme-package">TanpaRoyal</div>
                         </a>
                     </div>
                 </div>
-                <button type="button" class="slider-btn slider-btn-right" onclick="geserKatalog('eid-grid', 1)">❯</button>
+                <button
+                    type="button"
+                    class="slider-btn slider-btn-right"
+                    onclick="geserKatalog('eid-grid', 1)"
+                >
+                    ❯
+                </button>
             </div>
-            <button class="back-btn" onclick="switchFrame('frame-home')" data-i18n="back_home">⬅ Kembali ke Menu Utama</button>
+            <button
+                type="button"
+                class="back-btn"
+                onclick="switchFrame('frame-home')"
+                data-i18n="back_home"
+            >
+                ⬅ Kembali ke Menu Utama
+            </button>
         </div>
 
         <!-- FOOTER: ORDER NOW -->
@@ -625,18 +866,22 @@
             </a>
         </div>
 
-    </main>
+    </div>
 
     <p class="footer-note" data-i18n="footer">&copy; 2026 Tanpa Kata Collection. All Rights Reserved.</p>
 
     <!-- MODAL TENTANG WEB -->
-    <div id="aboutModal" class="modal-overlay" onclick="closeModalOutside(event, 'aboutModal')">
+    <div
+        id="aboutModal"
+        class="modal-overlay"
+        onclick="closeModalOutside(event, 'aboutModal')"
+    >
         <div class="modal-card" style="max-width: 500px;">
             <h3 class="modal-title" data-i18n="about_title">✨ Tentang Web Tanpa Kata Collection</h3>
 
             <div class="about-stat-grid">
                 <div class="about-stat-box">
-                    <span class="about-stat-value">500+</span>
+                    <span class="about-stat-value">500</span>
                     <span class="about-stat-label" data-i18n="about_sold_label">Jumlah Template Terjual</span>
                 </div>
                 <div class="about-stat-box">
@@ -652,7 +897,7 @@
                         <span class="item-nominal">25 November 2026</span>
                     </div>
                     <span class="item-desc" data-i18n="about_founder_desc">
-                        Tanpa Kata Collection didirikan pada 25 November 2026 oleh Moch. Viky Ardiansyah sebagai owner, dan dibantu teman-temannya dengan semangat menghadirkan kartu ucapan digital yang hangat, praktis, serta ramah di kantong untuk berbagai momen spesial.
+                        Tanpa Kata Collection didirikan pada 25 November 2026 oleh Moch. Viky Ardiansyah sebagai owner, dan dibantu teman-temannya dengan semangat menghadirkan kartu ucapan digital yang hangat dan praktis serta tetap ramah di kantong untuk berbagai momen spesial.
                     </span>
                 </div>
 
@@ -692,6 +937,7 @@
                 class="close-modal-btn"
                 onclick="closeModal('aboutModal')"
                 data-i18n="close_btn"
+                style="margin-top: 10px;"
             >
                 Tutup
             </button>
@@ -699,21 +945,73 @@
     </div>
 
     <!-- MODAL MENU HARGA -->
-    <div id="priceModal" class="modal-overlay" onclick="closeModalOutside(event, 'priceModal')">
+    <div
+        id="priceModal"
+        class="modal-overlay"
+        onclick="closeModalOutside(event, 'priceModal')"
+    >
         <div class="modal-card" style="max-width: 500px;">
-            <h3 class="modal-title" data-i18n="price_title">📋 Pilih Kategori untuk Melihat Harga</h3>
+            <h3 class="modal-title">📋 Pilih Kategori untuk Melihat Harga</h3>
 
-            <div id="priceCategorySelect" class="price-cat-grid">
-                <button type="button" onclick="selectPriceCat('complex', 'Ulang Tahun')" class="back-btn price-cat-btn">🎂 Ulang Tahun</button>
-                <button type="button" onclick="selectPriceCat('complex', 'Pernikahan')" class="back-btn price-cat-btn">💍 Pernikahan</button>
-                <button type="button" onclick="selectPriceCat('complex', 'Valentine')" class="back-btn price-cat-btn">💌 Valentine</button>
-                <button type="button" onclick="selectPriceCat('simple', 'Natal')" class="back-btn price-cat-btn">🎄 Natal</button>
-                <button type="button" onclick="selectPriceCat('simple', 'Tahun Baru')" class="back-btn price-cat-btn">🎆 Tahun Baru</button>
-                <button type="button" onclick="selectPriceCat('simple', 'Idul Fitri')" class="back-btn price-cat-btn">🌙 Idul Fitri</button>
+            <div
+                id="priceCategorySelect"
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px;"
+            >
+                <button
+                    type="button"
+                    onclick="selectPriceCat('complex', 'Ulang Tahun')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    🎂 Ulang Tahun
+                </button>
+                <button
+                    type="button"
+                    onclick="selectPriceCat('complex', 'Pernikahan')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    💍 Pernikahan
+                </button>
+                <button
+                    type="button"
+                    onclick="selectPriceCat('complex', 'Valentine')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    💌 Valentine
+                </button>
+                <button
+                    type="button"
+                    onclick="selectPriceCat('simple', 'Natal')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    🎄 Natal
+                </button>
+                <button
+                    type="button"
+                    onclick="selectPriceCat('simple', 'Tahun Baru')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    🎆 Tahun Baru
+                </button>
+                <button
+                    type="button"
+                    onclick="selectPriceCat('simple', 'Idul Fitri')"
+                    class="back-btn"
+                    style="font-size:13px; padding:10px;"
+                >
+                    🌙 Idul Fitri
+                </button>
             </div>
 
             <div id="priceListComplex" class="modal-list" style="display: none;">
-                <h4 id="complexTitle" class="price-sub-title"></h4>
+                <h4
+                    id="complexTitle"
+                    style="font-size:13px; color:var(--card-text); text-align:center; margin-bottom:4px;"
+                ></h4>
                 <div class="modal-item">
                     <div class="modal-header-row">
                         <span class="item-name">TanpaHemat</span>
@@ -733,15 +1031,23 @@
                         <span class="item-name">TanpaRoyal</span>
                         <span class="item-nominal">Rp 10.000</span>
                     </div>
-                    <span class="item-desc">Teks ucapan, 6 frame foto, icon gambar dan lagu</span>
+                    <span class="item-desc">Teks ucapan, 6 frame foto , icon gambar dan lagu</span>
                 </div>
-                <button type="button" onclick="backToPriceCategories()" class="back-btn" style="font-size:12px; padding:8px; margin-top:4px;">
+                <button
+                    type="button"
+                    onclick="backToPriceCategories()"
+                    class="back-btn"
+                    style="font-size:12px; padding:6px; margin-top:5px;"
+                >
                     ⬅ Kembali Pilih Kategori
                 </button>
             </div>
 
             <div id="priceListSimple" class="modal-list" style="display: none;">
-                <h4 id="simpleTitle" class="price-sub-title"></h4>
+                <h4
+                    id="simpleTitle"
+                    style="font-size:13px; color:var(--card-text); text-align:center; margin-bottom:4px;"
+                ></h4>
                 <div class="modal-item">
                     <div class="modal-header-row">
                         <span class="item-name">TanpaHemat</span>
@@ -754,28 +1060,42 @@
                         <span class="item-name">TanpaMedium</span>
                         <span class="item-nominal">Rp 5.000</span>
                     </div>
-                    <span class="item-desc">1 frame foto, icon gambar dan teks ucapan</span>
+                    <span class="item-desc">1 frame foto , icon gambar dan teks ucapan</span>
                 </div>
                 <div class="modal-item">
                     <div class="modal-header-row">
                         <span class="item-name">TanpaRoyal</span>
                         <span class="item-nominal">Rp 10.000</span>
                     </div>
-                    <span class="item-desc">2 frame foto, teks ucapan, icon gambar dan lagu</span>
+                    <span class="item-desc">2 frame foto , teks ucapan , icon gambar dan lagu</span>
                 </div>
-                <button type="button" onclick="backToPriceCategories()" class="back-btn" style="font-size:12px; padding:8px; margin-top:4px;">
+                <button
+                    type="button"
+                    onclick="backToPriceCategories()"
+                    class="back-btn"
+                    style="font-size:12px; padding:6px; margin-top:5px;"
+                >
                     ⬅ Kembali Pilih Kategori
                 </button>
             </div>
 
-            <button type="button" class="close-modal-btn" onclick="closeModal('priceModal')" data-i18n="close_btn">
+            <button
+                type="button"
+                class="close-modal-btn"
+                onclick="closeModal('priceModal')"
+                style="margin-top: 10px;"
+            >
                 Tutup
             </button>
         </div>
     </div>
 
     <!-- MODAL MENU PROMO -->
-    <div id="promoModal" class="modal-overlay" onclick="closeModalOutside(event, 'promoModal')">
+    <div
+        id="promoModal"
+        class="modal-overlay"
+        onclick="closeModalOutside(event, 'promoModal')"
+    >
         <div class="modal-card">
             <h3 class="modal-title" data-i18n="promo_title">🔥 Paket Promo Bundling</h3>
             <div class="modal-list">
@@ -798,12 +1118,38 @@
                     </span>
                 </div>
             </div>
-            <button type="button" class="close-modal-btn" onclick="closeModal('promoModal')" data-i18n="close_btn">
+            <button
+                type="button"
+                class="close-modal-btn"
+                onclick="closeModal('promoModal')"
+                data-i18n="close_btn"
+            >
                 Tutup
             </button>
         </div>
     </div>
 
     <script src="katalog.js"></script>
+    <script>
+        function geserKatalog(gridId, arah) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+
+            const langkah = Math.max(grid.clientWidth, 240);
+            if (arah > 0) {
+                if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 4) {
+                    grid.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    grid.scrollBy({ left: langkah, behavior: 'smooth' });
+                }
+            } else {
+                if (grid.scrollLeft <= 4) {
+                    grid.scrollTo({ left: grid.scrollWidth, behavior: 'smooth' });
+                } else {
+                    grid.scrollBy({ left: -langkah, behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
 </body>
 </html>

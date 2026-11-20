@@ -1,22 +1,13 @@
-// Fungsi geser slider pas persis 2 frame sekaligus tanpa melompat
-function slideContainer(gridId, direction) {
-    const container = document.getElementById(gridId);
-    const firstItem = container.querySelector('.template-item');
-    if (!firstItem) return;
-    const itemWidth = firstItem.offsetWidth + 16;
-    container.scrollBy({ left: direction * (itemWidth * 2), behavior: 'smooth' });
-}
-
-// Kamus Bahasa (ID & EN)
 const translations = {
     id: {
+        menu_label: "Menu",
         settings: "Pengaturan",
         about_web: "Tentang Web",
-        about_title: "✨ Tentang Web Tanpa Kata Colection",
+        about_title: "✨ Tentang Web Tanpa Kata Collection",
         about_sold_label: "Jumlah Template Terjual",
         about_rating_label: "Rating Pengguna",
         about_founder_title: "Pendiri & Berdiri",
-        about_founder_desc: "Tanpa Kata Colection didirikan oleh Moch. Viky Ardiansyah sebagai owner dan teman-teman, didirikan pada tanggal 25 November 2026.",
+        about_founder_desc: "Tanpa Kata Collection didirikan pada 25 November 2026 oleh Moch. Viky Ardiansyah sebagai owner, dan dibantu teman-temannya dengan semangat menghadirkan kartu ucapan digital yang hangat dan praktis serta tetap ramah di kantong untuk berbagai momen spesial.",
         about_cat_title: "Koleksi Kartu Ucapan Digital",
         about_cat_badge: "6 Kategori • 60 Tema",
         about_cat_desc: "Menyediakan kartu ucapan digital siap pakai untuk momen Ulang Tahun, Pernikahan, Natal, Tahun Baru, Hari Valentine, dan Idul Fitri.",
@@ -44,14 +35,10 @@ const translations = {
         title_eid: "Kategori: Idul Fitri",
         back_home: "⬅ Kembali ke Menu Utama",
         order_btn: "💬 Pesan Sekarang",
-        footer: "© 2026 Tanpa Kata.colection. All Rights Reserved.",
-        price_title: "📋 Daftar Paket & Harga",
-        price_desc_1: "Teks ucapan & 2 frame foto",
-        price_desc_2: "Teks ucapan, 5 frame foto dan icon gambar",
-        price_desc_3: "Teks ucapan, 10 frame foto , icon gambar dan lagu",
+        footer: "© 2026 Tanpa Kata Collection. All Rights Reserved.",
         promo_title: "🔥 Paket Promo Bundling",
-        promo_desc_1: "2 kartu ucapan TanpaHemat dan 3 kartu ucapan TanpaRoyal",
-        promo_desc_2: "5 kartu ucapan TanpaMedium dan 5 kartu ucapan TanpaRoyal",
+        promo_desc_1: "2 kartu ucapan TanpaHemat dan 2 kartu ucapan TanpaRoyal",
+        promo_desc_2: "3 kartu ucapan TanpaMedium dan 3 kartu ucapan TanpaRoyal",
         close_btn: "Tutup",
         t_birthday_1: "Ulang Tahun Tema 01", t_birthday_2: "Ulang Tahun Tema 02", t_birthday_3: "Ulang Tahun Tema 03", t_birthday_4: "Ulang Tahun Tema 04", t_birthday_5: "Ulang Tahun Tema 05", t_birthday_6: "Ulang Tahun Tema 06", t_birthday_7: "Ulang Tahun Tema 07", t_birthday_8: "Ulang Tahun Tema 08", t_birthday_9: "Ulang Tahun Tema 09", t_birthday_10: "Ulang Tahun Tema 10",
         t_wedding_1: "Pernikahan Tema 01", t_wedding_2: "Pernikahan Tema 02", t_wedding_3: "Pernikahan Tema 03", t_wedding_4: "Pernikahan Tema 04", t_wedding_5: "Pernikahan Tema 05", t_wedding_6: "Pernikahan Tema 06", t_wedding_7: "Pernikahan Tema 07", t_wedding_8: "Pernikahan Tema 08", t_wedding_9: "Pernikahan Tema 09", t_wedding_10: "Pernikahan Tema 10",
@@ -61,13 +48,14 @@ const translations = {
         t_eid_1: "Idul Fitri Tema 01", t_eid_2: "Idul Fitri Tema 02", t_eid_3: "Idul Fitri Tema 03", t_eid_4: "Idul Fitri Tema 04", t_eid_5: "Idul Fitri Tema 05", t_eid_6: "Idul Fitri Tema 06", t_eid_7: "Idul Fitri Tema 07", t_eid_8: "Idul Fitri Tema 08", t_eid_9: "Idul Fitri Tema 09", t_eid_10: "Idul Fitri Tema 10"
     },
     en: {
+        menu_label: "Menu",
         settings: "Settings",
         about_web: "About Web",
-        about_title: "✨ About Tanpa Kata Colection",
+        about_title: "✨ About Tanpa Kata Collection",
         about_sold_label: "Templates Sold",
         about_rating_label: "User Rating",
         about_founder_title: "Founders & Established",
-        about_founder_desc: "Tanpa Kata Colection was founded by Moch. Viky Ardiansyah as owner and friends, established on November 25, 2026.",
+        about_founder_desc: "Tanpa Kata Collection was founded on November 25, 2026 by Moch. Viky Ardiansyah as owner and friends, dedicated to creating warm, practical, and affordable digital greeting cards for special moments.",
         about_cat_title: "Digital Greeting Card Collection",
         about_cat_badge: "6 Categories • 60 Themes",
         about_cat_desc: "Provides ready-to-customize digital greeting cards for Birthday, Wedding, Christmas, New Year, Valentine's Day, and Eid Al-Fitr.",
@@ -95,14 +83,10 @@ const translations = {
         title_eid: "Category: Eid Al-Fitr",
         back_home: "⬅ Back to Main Menu",
         order_btn: "💬 Order Now",
-        footer: "© 2026 Tanpa Kata.colection. All Rights Reserved.",
-        price_title: "📋 Pricing & Packages",
-        price_desc_1: "Greeting text & 2 photo frames",
-        price_desc_2: "Greeting text, 5 photo frames & image icon",
-        price_desc_3: "Greeting text, 10 photo frames, image icon & song",
+        footer: "© 2026 Tanpa Kata Collection. All Rights Reserved.",
         promo_title: "🔥 Bundling Promo Packages",
-        promo_desc_1: "2 TanpaHemat cards and 3 TanpaRoyal cards",
-        promo_desc_2: "5 TanpaMedium cards and 5 TanpaRoyal cards",
+        promo_desc_1: "2 TanpaHemat cards and 2 TanpaRoyal cards",
+        promo_desc_2: "3 TanpaMedium cards and 3 TanpaRoyal cards",
         close_btn: "Close",
         t_birthday_1: "Birthday Theme 01", t_birthday_2: "Birthday Theme 02", t_birthday_3: "Birthday Theme 03", t_birthday_4: "Birthday Theme 04", t_birthday_5: "Birthday Theme 05", t_birthday_6: "Birthday Theme 06", t_birthday_7: "Birthday Theme 07", t_birthday_8: "Birthday Theme 08", t_birthday_9: "Birthday Theme 09", t_birthday_10: "Birthday Theme 10",
         t_wedding_1: "Wedding Theme 01", t_wedding_2: "Wedding Theme 02", t_wedding_3: "Wedding Theme 03", t_wedding_4: "Wedding Theme 04", t_wedding_5: "Wedding Theme 05", t_wedding_6: "Wedding Theme 06", t_wedding_7: "Wedding Theme 07", t_wedding_8: "Wedding Theme 08", t_wedding_9: "Wedding Theme 09", t_wedding_10: "Wedding Theme 10",
@@ -122,16 +106,7 @@ function toggleLanguage() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLang][key]) {
-            if (el.tagName === 'A' || el.tagName === 'BUTTON') {
-                const firstChar = el.innerHTML.trim().charAt(0);
-                if (['💬', '⚙️', '📋', '🔥', '🌓', '🌐', '⬅', '✨'].includes(firstChar)) {
-                    el.innerHTML = el.innerHTML.replace(el.innerText, translations[currentLang][key]);
-                } else {
-                    el.innerText = translations[currentLang][key];
-                }
-            } else {
-                el.innerText = translations[currentLang][key];
-            }
+            el.innerText = translations[currentLang][key];
         }
     });
 
@@ -154,11 +129,17 @@ function switchFrame(frameId) {
 
 function toggleSettingsMenu(event) {
     if (event) event.stopPropagation();
-    document.getElementById('settingsDropdown').classList.toggle('show');
+    const dropdown = document.getElementById('settingsDropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('show');
+    }
 }
 
 function closeSettingsMenu() {
-    document.getElementById('settingsDropdown').classList.remove('show');
+    const dropdown = document.getElementById('settingsDropdown');
+    if (dropdown) {
+        dropdown.classList.remove('show');
+    }
 }
 
 function toggleTheme() {
@@ -203,13 +184,12 @@ function closeModalOutside(event, modalId) {
     }
 }
 
-window.onclick = function(event) {
-    if (!event.target.closest('.settings-container')) {
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('#settingsContainer')) {
         closeSettingsMenu();
     }
-};
+});
 
-// Fungsi untuk memilih kategori harga
 function selectPriceCat(type, catName) {
     document.getElementById('priceCategorySelect').style.display = 'none';
 
@@ -224,7 +204,6 @@ function selectPriceCat(type, catName) {
     }
 }
 
-// Fungsi kembali ke tombol kategori awal di modal harga
 function backToPriceCategories() {
     document.getElementById('priceCategorySelect').style.display = 'grid';
     document.getElementById('priceListComplex').style.display = 'none';
