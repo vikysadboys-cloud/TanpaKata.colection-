@@ -11,6 +11,19 @@ function slideContainer(gridId, direction) {
 const translations = {
     id: {
         settings: "Pengaturan",
+        about_web: "Tentang Web",
+        about_title: "✨ Tentang Web Tanpa Kata Colection",
+        about_sold_label: "Jumlah Template Terjual",
+        about_rating_label: "Rating Pengguna",
+        about_founder_title: "Pendiri & Berdiri",
+        about_founder_desc: "Tanpa Kata Colection didirikan oleh Moch. Viky Ardiansyah sebagai owner dan teman-teman, didirikan pada tanggal 25 November 2026.",
+        about_cat_title: "Koleksi Kartu Ucapan Digital",
+        about_cat_badge: "6 Kategori • 60 Tema",
+        about_cat_desc: "Menyediakan kartu ucapan digital siap pakai untuk momen Ulang Tahun, Pernikahan, Natal, Tahun Baru, Hari Valentine, dan Idul Fitri.",
+        about_pkg_title: "Paket & Fitur Kustomisasi",
+        about_pkg_desc: "Pilihan paket TanpaHemat, TanpaMedium, dan TanpaRoyal dengan penyesuaian teks ucapan, frame foto, ikon, serta lagu agar setiap ucapan terasa personal.",
+        about_order_title: "Akses & Pemesanan",
+        about_order_desc: "Pratinjau katalog dapat dibuka langsung dari perangkat apa pun dan pemesanan dilakukan praktis lewat tombol Pesan Sekarang ke WhatsApp resmi.",
         dark_mode: "Mode Gelap",
         light_mode: "Mode Terang",
         menu_price: "Menu Harga",
@@ -49,6 +62,19 @@ const translations = {
     },
     en: {
         settings: "Settings",
+        about_web: "About Web",
+        about_title: "✨ About Tanpa Kata Colection",
+        about_sold_label: "Templates Sold",
+        about_rating_label: "User Rating",
+        about_founder_title: "Founders & Established",
+        about_founder_desc: "Tanpa Kata Colection was founded by Moch. Viky Ardiansyah as owner and friends, established on November 25, 2026.",
+        about_cat_title: "Digital Greeting Card Collection",
+        about_cat_badge: "6 Categories • 60 Themes",
+        about_cat_desc: "Provides ready-to-customize digital greeting cards for Birthday, Wedding, Christmas, New Year, Valentine's Day, and Eid Al-Fitr.",
+        about_pkg_title: "Packages & Customization",
+        about_pkg_desc: "Available in TanpaHemat, TanpaMedium, and TanpaRoyal tiers with personalized greeting text, photo frames, icons, and music.",
+        about_order_title: "Access & Ordering",
+        about_order_desc: "Preview templates smoothly on any device and place orders directly via WhatsApp through the Order Now button.",
         dark_mode: "Dark Mode",
         light_mode: "Light Mode",
         menu_price: "Price Menu",
@@ -92,13 +118,13 @@ let currentLang = 'id';
 function toggleLanguage() {
     currentLang = currentLang === 'id' ? 'en' : 'id';
     document.getElementById('langText').innerText = currentLang === 'id' ? 'English' : 'Indonesia';
-    
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLang][key]) {
             if (el.tagName === 'A' || el.tagName === 'BUTTON') {
                 const firstChar = el.innerHTML.trim().charAt(0);
-                if (['💬','⚙️','📋','🔥','🌓','🌐','⬅'].includes(firstChar)) {
+                if (['💬', '⚙️', '📋', '🔥', '🌓', '🌐', '⬅', '✨'].includes(firstChar)) {
                     el.innerHTML = el.innerHTML.replace(el.innerText, translations[currentLang][key]);
                 } else {
                     el.innerText = translations[currentLang][key];
@@ -118,15 +144,16 @@ function toggleLanguage() {
 function switchFrame(frameId) {
     const frames = document.querySelectorAll('.frame');
     frames.forEach(frame => frame.classList.remove('active'));
-    
+
     const target = document.getElementById(frameId);
-    if(target) {
+    if (target) {
         target.classList.add('active');
     }
     closeSettingsMenu();
 }
 
-function toggleSettingsMenu() {
+function toggleSettingsMenu(event) {
+    if (event) event.stopPropagation();
     document.getElementById('settingsDropdown').classList.toggle('show');
 }
 
@@ -138,7 +165,7 @@ function toggleTheme() {
     const html = document.documentElement;
     const themeText = document.getElementById('themeText');
     const isDark = html.getAttribute('data-theme') === 'dark';
-    
+
     if (isDark) {
         html.removeAttribute('data-theme');
         themeText.innerText = currentLang === 'en' ? 'Dark Mode' : 'Mode Gelap';
@@ -149,8 +176,14 @@ function toggleTheme() {
     closeSettingsMenu();
 }
 
+function openAboutModal() {
+    document.getElementById('aboutModal').style.display = 'flex';
+    closeSettingsMenu();
+}
+
 function openPriceModal() {
     document.getElementById('priceModal').style.display = 'flex';
+    backToPriceCategories();
     closeSettingsMenu();
 }
 
@@ -171,15 +204,15 @@ function closeModalOutside(event, modalId) {
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.settings-btn') && !event.target.closest('.settings-dropdown')) {
+    if (!event.target.closest('.settings-container')) {
         closeSettingsMenu();
     }
-}
+};
 
 // Fungsi untuk memilih kategori harga
 function selectPriceCat(type, catName) {
     document.getElementById('priceCategorySelect').style.display = 'none';
-    
+
     if (type === 'complex') {
         document.getElementById('complexTitle').innerText = '✨ Paket Kategori: ' + catName;
         document.getElementById('priceListComplex').style.display = 'flex';
@@ -197,13 +230,6 @@ function backToPriceCategories() {
     document.getElementById('priceListComplex').style.display = 'none';
     document.getElementById('priceListSimple').style.display = 'none';
 }
-
-// Override fungsi openPriceModal agar mereset tampilan awal saat modal dibuka
-window.openPriceModal = function() {
-    document.getElementById('priceModal').style.display = 'flex';
-    backToPriceCategories();
-    if(typeof closeSettingsMenu === 'function') closeSettingsMenu();
-};
 
 window.addEventListener('DOMContentLoaded', function() {
     const hash = window.location.hash;

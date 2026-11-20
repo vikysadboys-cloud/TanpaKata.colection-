@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine 01 - Tanpa Kata Colection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 55%, #fdf2f8 100%);
+            --card-bg: #fff5f6;
+            --frame-bg: #ffffff;
+            --border-primary: #e11d48;
+            --border-accent: #fb7185;
+            --shadow: 0 20px 42px rgba(225, 29, 72, 0.16);
+            --text-main: #2d141c;
+            --text-sub: #7f1d1d;
+            --title-color: #be123c;
+            --btn-bg: #ffe4e6;
+            --btn-text: #be123c;
+            --btn-border: #e11d48;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #3b0a1c 55%, #111827 100%);
+            --card-bg: #1e293b;
+            --frame-bg: #0f172a;
+            --border-primary: #fb7185;
+            --border-accent: #f43f5e;
+            --shadow: 0 20px 42px rgba(0, 0, 0, 0.5);
+            --text-main: #f8fafc;
+            --text-sub: #fecdd3;
+            --title-color: #fda4af;
+            --btn-bg: #334155;
+            --btn-text: #fda4af;
+            --btn-border: #fb7185;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .valentine-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            border: 3px solid var(--border-primary);
+            box-shadow: var(--shadow), inset 0 0 0 3px var(--frame-bg);
+            padding: 24px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .val-badge {
+            align-self: center;
+            background: var(--frame-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+        }
+
+        .greeting-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 6px;
+        }
+
+        .greeting-box p {
+            font-size: 13.5px;
+            color: var(--text-sub);
+            line-height: 1.65;
+        }
+
+        .photo-pair {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
+            background-image: url('../images/a.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 3px solid #ffffff;
+            outline: 1.5px solid var(--border-primary);
+            box-shadow: 0 6px 14px rgba(225, 29, 72, 0.14);
+        }
+
+        .photo-1 {
+            transform: rotate(-2deg);
+        }
+
+        .photo-2 {
+            transform: rotate(2deg);
+        }
+
+        .back-btn {
+            align-self: center;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 56px 12px 20px 12px;
+            }
+            .valentine-card {
+                padding: 18px 14px;
+                border-radius: 24px;
+                gap: 13px;
+            }
+            .greeting-box h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="valentine-card">
+        <span class="val-badge">💘 HAPPY VALENTINE'S DAY • 01</span>
+        <div class="greeting-box">
+            <h1>Be My Valentine</h1>
+            <p>
+                Terima kasih sudah menjadi rumah paling hangat dan alasan senyumku setiap hari.
+                Semoga hari-hari kita selalu penuh cinta, tawa, dan kebersamaan yang indah.
+            </p>
+        </div>
+        <div class="photo-pair">
+            <div class="photo-frame photo-1"></div>
+            <div class="photo-frame photo-2"></div>
+        </div>
+        <a href="../katalog.html#valentine" class="back-btn">🏠 Kembali ke Katalog</a>
+    </div>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

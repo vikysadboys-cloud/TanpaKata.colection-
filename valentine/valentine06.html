@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine 06 - Tanpa Kata Colection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 60%, #fff1f2 100%);
+            --card-bg: #fdf2f8;
+            --card-secondary: #fce7f3;
+            --frame-bg: #ffffff;
+            --border-primary: #db2777;
+            --border-accent: #f472b6;
+            --corner-color: #9d174d;
+            --shadow: 0 20px 40px rgba(219, 39, 119, 0.15);
+            --text-main: #311026;
+            --text-sub: #831843;
+            --title-color: #be185d;
+            --btn-bg: #fbcfe8;
+            --btn-text: #9d174d;
+            --btn-border: #db2777;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #380b29 55%, #111827 100%);
+            --card-bg: #1e293b;
+            --card-secondary: #283548;
+            --frame-bg: #0f172a;
+            --border-primary: #f472b6;
+            --border-accent: #ec4899;
+            --corner-color: #f9a8d4;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --text-main: #f8fafc;
+            --text-sub: #fbcfe8;
+            --title-color: #f9a8d4;
+            --btn-bg: #334155;
+            --btn-text: #f9a8d4;
+            --btn-border: #f472b6;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .main-shell {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 26px;
+            border: 2.5px solid var(--border-primary);
+            box-shadow: var(--shadow), -6px 6px 0px var(--btn-bg);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            position: relative;
+        }
+
+        .main-shell::before,
+        .main-shell::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .main-shell::before {
+            top: 7px;
+            left: 7px;
+            border-top: 3px solid var(--corner-color);
+            border-left: 3px solid var(--corner-color);
+            border-top-left-radius: 10px;
+        }
+
+        .main-shell::after {
+            bottom: 7px;
+            right: 7px;
+            border-bottom: 3px solid var(--corner-color);
+            border-right: 3px solid var(--corner-color);
+            border-bottom-right-radius: 10px;
+        }
+
+        .vertical-switcher {
+            display: flex;
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .v-tab-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 16px;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .v-tab-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border-color: var(--btn-border);
+        }
+
+        .vertical-viewport {
+            width: 100%;
+            height: 575px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-accent);
+            position: relative;
+            z-index: 2;
+        }
+
+        .vertical-track {
+            display: flex;
+            flex-direction: column;
+            height: 200%;
+            transform: translateY(0%);
+        }
+
+        .page-2g {
+            height: 50%;
+            width: 100%;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .ornament-tag {
+            background: var(--frame-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+        }
+
+        .valentine-box {
+            background: var(--frame-bg);
+            border: 1.5px solid var(--border-accent);
+            border-left: 4px solid var(--border-primary);
+            border-right: 4px solid var(--border-primary);
+            border-radius: 18px;
+            padding: 20px 16px;
+            width: 100%;
+        }
+
+        .icon-badge {
+            font-size: 32px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .valentine-box h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 6px;
+        }
+
+        .valentine-box p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        .photo-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 285px;
+            margin: 0 auto;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
+            background-image: url('../images/a.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--frame-bg);
+            border: 2.5px solid #ffffff;
+            outline: 1.5px solid var(--border-primary);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 11.5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 54px 10px 20px 10px;
+            }
+            .main-shell {
+                padding: 12px;
+            }
+            .vertical-viewport {
+                height: 540px;
+            }
+            .photo-grid-4 {
+                max-width: 245px;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="main-shell">
+        <div class="vertical-switcher">
+            <button id="tab1" class="v-tab-btn active" onclick="move2G(0)">
+                ⬇ Halaman 1: Ucapan
+            </button>
+            <button id="tab2" class="v-tab-btn" onclick="move2G(1)">
+                ⬇ Halaman 2: 4 Foto
+            </button>
+        </div>
+
+        <div class="vertical-viewport">
+            <div id="verticalTrack" class="vertical-track">
+                <div class="page-2g">
+                    <span class="ornament-tag">✦ 💌 Valentine 06 • 01/02</span>
+                    <div class="valentine-box">
+                        <span class="icon-badge">💌❤️</span>
+                        <h1>Sweetest Valentine</h1>
+                        <p>
+                            Terima kasih telah hadir membawa warna baru dan ketenangan di setiap hari.
+                            Semoga cinta kita terus tumbuh lebih kuat dari waktu ke waktu.
+                        </p>
+                    </div>
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="move2G(1)">
+                            Geser ke Bawah (4 Foto) ⬇
+                        </button>
+                    </div>
+                </div>
+
+                <div class="page-2g">
+                    <span class="ornament-tag">📸 4 Sweet Frames • 02/02</span>
+                    <div class="photo-grid-4">
+                        <div class="photo-frame"></div>
+                        <div class="photo-frame"></div>
+                        <div class="photo-frame"></div>
+                        <div class="photo-frame"></div>
+                    </div>
+                    <div class="btn-container">
+                        <button class="action-btn" onclick="move2G(0)">⬆ Halaman 1</button>
+                        <a href="../katalog.html#valentine" class="action-btn">🏠 Menu Kategori</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function move2G(pageIndex) {
+            const track = document.getElementById('verticalTrack');
+            document.getElementById('tab1').classList.toggle('active', pageIndex === 0);
+            document.getElementById('tab2').classList.toggle('active', pageIndex === 1);
+            track.style.transform = pageIndex === 0 ? 'translateY(0%)' : 'translateY(-50%)';
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

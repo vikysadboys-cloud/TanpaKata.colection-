@@ -3,7 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 :root {
@@ -13,7 +16,7 @@
     --card-border: #bae6fd;
     --card-text: #0369a1;
     --subtext: #64748b;
-    --shadow: 0 4px 12px rgba(0,0,0,0.03);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 [data-theme="dark"] {
@@ -23,10 +26,11 @@
     --card-border: #334155;
     --card-text: #38bdf8;
     --subtext: #94a3b8;
-    --shadow: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-html, body {
+html,
+body {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
@@ -44,11 +48,40 @@ body {
     position: relative;
 }
 
-/* TOMBOL SETELAN DI POJOK KANAN ATAS */
-.settings-container {
+/* KONTROL KANAN ATAS: TENTANG WEB + PENGATURAN */
+.top-right-controls {
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-top-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--card-text);
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, background-color 0.25s ease;
+}
+
+.about-top-btn:hover {
+    transform: scale(1.05);
+}
+
+/* TOMBOL SETELAN DI POJOK KANAN ATAS */
+.settings-container {
+    position: relative;
     z-index: 100;
 }
 
@@ -64,7 +97,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .settings-btn:hover {
@@ -80,8 +113,8 @@ body {
     background: var(--bg-main);
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 200px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 190px;
     overflow: hidden;
     flex-direction: column;
 }
@@ -114,6 +147,36 @@ body {
     color: var(--card-text);
 }
 
+/* STATISTIK DALAM MODAL TENTANG WEB */
+.about-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.about-stat-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.about-stat-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--card-text);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.about-stat-label {
+    font-size: 12px;
+    color: var(--text-main);
+    display: block;
+}
+
 /* WRAPPER UTAMA */
 .wrapper {
     width: 100%;
@@ -139,8 +202,14 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* HEADER */
@@ -312,7 +381,7 @@ body {
     justify-content: center;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
 }
 
@@ -352,8 +421,11 @@ body {
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 1000;
     justify-content: center;
@@ -371,13 +443,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     animation: scaleUp 0.3s ease;
 }
 
 @keyframes scaleUp {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .modal-title {
@@ -484,7 +562,8 @@ body {
     .brand-title {
         font-size: 24px;
     }
-    .theme-card, .template-item {
+    .theme-card,
+    .template-item {
         flex: 0 0 calc(90% - 8px);
     }
     .slider-btn {
