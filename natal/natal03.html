@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natal 03 - Tanpa Kata Colection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Terang di sini */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 55%, #fef3c7 100%);
+            --card-bg: #ffffff;
+            --inner-bg: #f0f9ff;
+            --border-primary: #0369a1;
+            --border-accent: #d97706;
+            --shadow: 0 20px 42px rgba(3, 105, 161, 0.15);
+            --text-main: #0f172a;
+            --text-sub: #075985;
+            --title-color: #0c4a6e;
+            --btn-bg: #e0f2fe;
+            --btn-text: #0c4a6e;
+            --btn-border: #0369a1;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Gelap di sini */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #061324 0%, #0c2a4a 55%, #0f172a 100%);
+            --card-bg: #0c213b;
+            --inner-bg: #133259;
+            --border-primary: #38bdf8;
+            --border-accent: #fbbf24;
+            --shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+            --text-main: #f0f9ff;
+            --text-sub: #bae6fd;
+            --title-color: #fde047;
+            --btn-bg: #133259;
+            --btn-text: #fde047;
+            --btn-border: #38bdf8;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* KOMEN KRUSIAL: Border desain 03 (pita tebal atas-bawah + radius sudut diagonal) */
+        .christmas-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-top: 7px solid var(--border-accent);
+            border-bottom: 7px solid var(--border-accent);
+            border-left: 2.5px solid var(--border-primary);
+            border-right: 2.5px solid var(--border-primary);
+            border-radius: 14px 32px 14px 32px;
+            box-shadow: var(--shadow);
+            padding: 32px 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .badge-tag {
+            background: var(--inner-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 999px;
+        }
+
+        /* KOMEN KRUSIAL: Ukuran ikon gambar ucapan */
+        .icon-display {
+            font-size: clamp(2.8rem, 8vw, 3.8rem);
+            line-height: 1.2;
+        }
+
+        .greeting-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.65rem, 5vw, 2.15rem);
+            color: var(--title-color);
+            margin-bottom: 10px;
+        }
+
+        .greeting-box p {
+            font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        /* KOMEN KRUSIAL: Ganti tujuan link kembali ke kategori jika diperlukan */
+        .back-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 56px 12px 20px 12px;
+            }
+            .christmas-card {
+                padding: 26px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <main class="christmas-card">
+        <span class="badge-tag">🌟 TERANG NATAL • 03</span>
+        <div class="icon-display" aria-hidden="true">🌟🎄☃️</div>
+        <div class="greeting-box">
+            <h1>Natal Penuh Berkat</h1>
+            <p>
+                Semoga cahaya Natal menuntun langkah menuju kebaikan, mempererat persaudaraan, dan
+                menghadirkan harapan baru yang menenangkan.
+            </p>
+        </div>
+        <a href="../katalog.html#natal" class="back-btn">⬅ Kembali ke Kategori</a>
+    </main>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

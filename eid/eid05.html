@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idul Fitri 05 - Tanpa Kata Colection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Terang di sini */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 55%, #fef9c3 100%);
+            --card-bg: #ffffff;
+            --card-secondary: #f0fdf4;
+            --border-primary: #047857;
+            --border-accent: #d97706;
+            --shadow: 0 20px 40px rgba(4, 120, 87, 0.16);
+            --text-main: #0f172a;
+            --text-sub: #065f46;
+            --title-color: #064e3b;
+            --btn-bg: #d1fae5;
+            --btn-text: #064e3b;
+            --btn-border: #047857;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Gelap di sini */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #041711 0%, #093024 55%, #0f172a 100%);
+            --card-bg: #08241b;
+            --card-secondary: #0e382b;
+            --border-primary: #34d399;
+            --border-accent: #fbbf24;
+            --shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+            --text-main: #ecfdf5;
+            --text-sub: #a7f3d0;
+            --title-color: #fde047;
+            --btn-bg: #0e382b;
+            --btn-text: #fde047;
+            --btn-border: #34d399;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* KOMEN KRUSIAL: Border luar kartu desain 05 (bingkai hijau zamrud + garis dalam emas) */
+        .medium-shell {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 26px;
+            border: 3px solid var(--border-primary);
+            box-shadow: var(--shadow), inset 0 0 0 3px var(--border-accent);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-bar-2g {
+            display: flex;
+            background: var(--card-secondary);
+            border: 1.5px solid var(--border-accent);
+            border-radius: 18px;
+            padding: 4px;
+            gap: 6px;
+        }
+
+        .tab-2g-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            background: transparent;
+            color: var(--text-sub);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .tab-2g-btn.active {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border-color: var(--btn-border);
+        }
+
+        /* KOMEN KRUSIAL: Tipe card 2G menurun ke bawah (bukan geser horizontal) */
+        .viewport-2g {
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--card-secondary);
+            border: 2px solid var(--border-accent);
+        }
+
+        .track-2g {
+            display: flex;
+            flex-direction: column;
+            height: 200%;
+            transform: translateY(0%);
+        }
+
+        .page-2g {
+            height: 50%;
+            width: 100%;
+            padding: 18px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .badge-2g {
+            background: var(--card-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 999px;
+        }
+
+        .icon-badge {
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        /* KOMEN KRUSIAL: 1 frame foto potret menggunakan ../images/a.jpg */
+        .photo-frame-portrait {
+            width: 100%;
+            max-width: 195px;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
+            background-image: url('../images/a.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--card-bg);
+            border: 3px solid var(--border-primary);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .greeting-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--title-color);
+            margin-bottom: 6px;
+        }
+
+        .greeting-box p {
+            font-size: 12.5px;
+            color: var(--text-sub);
+            line-height: 1.55;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* KOMEN KRUSIAL: Ganti tujuan link kembali ke kategori jika diperlukan */
+        .action-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 11.5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 54px 10px 20px 10px;
+            }
+            .viewport-2g {
+                height: 525px;
+            }
+            .photo-frame-portrait {
+                max-width: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <div class="medium-shell">
+        <div class="tab-bar-2g">
+            <button id="tab2g1" class="tab-2g-btn active" onclick="move2G(0)">⬇ Bagian Atas</button>
+            <button id="tab2g2" class="tab-2g-btn" onclick="move2G(1)">⬇ Bagian Bawah</button>
+        </div>
+
+        <div class="viewport-2g">
+            <div id="track2G" class="track-2g">
+                <div class="page-2g">
+                    <span class="badge-2g">🕌 IDUL FITRI 05 • 2G</span>
+                    <div class="icon-badge" aria-hidden="true">🕌🌙✨</div>
+                    <div class="photo-frame-portrait"></div>
+                    <div class="btn-row">
+                        <button class="action-btn" onclick="move2G(1)">Turun ke Ucapan ⬇</button>
+                    </div>
+                </div>
+
+                <div class="page-2g">
+                    <span class="badge-2g">🤲 UCAPAN & DOA FITRI</span>
+                    <div class="greeting-box">
+                        <h1>Selamat Idul Fitri</h1>
+                        <p>
+                            Mohon maaf lahir dan batin atas segala khilaf. Semoga hari kemenangan ini membawa
+                            keberkahan, kesehatan, dan kebahagiaan untuk keluarga.
+                        </p>
+                    </div>
+                    <div class="btn-row">
+                        <button class="action-btn" onclick="move2G(0)">⬆ Kembali ke Atas</button>
+                        <a href="../katalog.html#idulfitri" class="action-btn">⬅ Kembali ke Kategori</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function move2G(index) {
+            const track = document.getElementById('track2G');
+            document.getElementById('tab2g1').classList.toggle('active', index === 0);
+            document.getElementById('tab2g2').classList.toggle('active', index === 1);
+            track.style.transform = index === 0 ? 'translateY(0%)' : 'translateY(-50%)';
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>

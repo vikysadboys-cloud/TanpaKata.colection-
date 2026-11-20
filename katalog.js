@@ -232,11 +232,21 @@ function backToPriceCategories() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-    const hash = window.location.hash;
-    if (hash) {
-        const targetFrameId = 'frame' + hash.replace('#', '-');
-        if (document.getElementById(targetFrameId)) {
-            switchFrame(targetFrameId);
-        }
+    const hashMap = {
+        '#ulangtahun': 'frame-birthday',
+        '#birthday': 'frame-birthday',
+        '#pernikahan': 'frame-wedding',
+        '#wedding': 'frame-wedding',
+        '#natal': 'frame-christmas',
+        '#christmas': 'frame-christmas',
+        '#tahunbaru': 'frame-newyear',
+        '#newyear': 'frame-newyear',
+        '#valentine': 'frame-valentine',
+        '#idulfitri': 'frame-eid',
+        '#eid': 'frame-eid'
+    };
+    const targetFrameId = hashMap[window.location.hash.toLowerCase()];
+    if (targetFrameId && document.getElementById(targetFrameId)) {
+        switchFrame(targetFrameId);
     }
 });

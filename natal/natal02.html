@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natal 02 - Tanpa Kata Colection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Terang di sini */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 55%, #fefce8 100%);
+            --card-bg: #ffffff;
+            --inner-bg: #fff5f5;
+            --border-primary: #be123c;
+            --border-accent: #eab308;
+            --shadow: 0 20px 42px rgba(190, 18, 60, 0.15);
+            --text-main: #1e293b;
+            --text-sub: #881337;
+            --title-color: #9f1239;
+            --btn-bg: #ffe4e6;
+            --btn-text: #9f1239;
+            --btn-border: #be123c;
+        }
+
+        /* KOMEN KRUSIAL: Ganti warna card, border, dan teks Mode Gelap di sini */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #1f060e 0%, #3b0d1b 55%, #0f172a 100%);
+            --card-bg: #260912;
+            --inner-bg: #3b0f1d;
+            --border-primary: #fb7185;
+            --border-accent: #facc15;
+            --shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+            --text-main: #fff1f2;
+            --text-sub: #fecdd3;
+            --title-color: #fde047;
+            --btn-bg: #3b0f1d;
+            --btn-text: #fde047;
+            --btn-border: #fb7185;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 16px 24px 16px;
+            position: relative;
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--btn-text);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* KOMEN KRUSIAL: Border desain 02 (bingkai tipis merah + siku sudut tebal emas ::before & ::after) */
+        .christmas-card {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 2px solid var(--border-primary);
+            box-shadow: var(--shadow);
+            padding: 32px 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .christmas-card::before,
+        .christmas-card::after {
+            content: "";
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            border-color: var(--border-accent);
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .christmas-card::before {
+            top: -4px;
+            left: -4px;
+            border-width: 5px 0 0 5px;
+            border-top-left-radius: 14px;
+        }
+
+        .christmas-card::after {
+            bottom: -4px;
+            right: -4px;
+            border-width: 0 5px 5px 0;
+            border-bottom-right-radius: 14px;
+        }
+
+        .badge-tag {
+            background: var(--inner-bg);
+            color: var(--title-color);
+            border: 1.5px solid var(--border-primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 8px;
+        }
+
+        /* KOMEN KRUSIAL: Ukuran ikon gambar ucapan */
+        .icon-display {
+            font-size: clamp(2.8rem, 8vw, 3.8rem);
+            line-height: 1.2;
+        }
+
+        .greeting-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.65rem, 5vw, 2.15rem);
+            color: var(--title-color);
+            margin-bottom: 10px;
+        }
+
+        .greeting-box p {
+            font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        /* KOMEN KRUSIAL: Ganti tujuan link kembali ke kategori jika diperlukan */
+        .back-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1.5px solid var(--btn-border);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 56px 12px 20px 12px;
+            }
+            .christmas-card {
+                padding: 26px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌓 <span id="themeText">Mode Gelap</span>
+        </button>
+    </div>
+
+    <main class="christmas-card">
+        <span class="badge-tag">❄️ SUKACITA NATAL • 02</span>
+        <div class="icon-display" aria-hidden="true">❄️🔔🕯️</div>
+        <div class="greeting-box">
+            <h1>Damai & Sukacita Natal</h1>
+            <p>
+                Di tengah hangatnya perayaan Natal, semoga keluarga dan orang-orang terdekat selalu
+                diberi kesehatan, kehangatan cinta, dan kedamaian yang abadi.
+            </p>
+        </div>
+        <a href="../katalog.html#natal" class="back-btn">⬅ Kembali ke Kategori</a>
+    </main>
+
+    <p class="footer-note">&copy; 2026 Tanpa Kata.colection. All Rights Reserved.</p>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeText.innerText = 'Mode Gelap';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeText.innerText = 'Mode Terang';
+            }
+        }
+    </script>
+</body>
+</html>
