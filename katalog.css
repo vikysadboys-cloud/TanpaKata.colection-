@@ -52,9 +52,11 @@ body {
 .top-navbar {
     width: 100%;
     max-width: 760px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     position: relative;
     z-index: 200;
 }
@@ -65,11 +67,14 @@ body {
     gap: 8px;
     text-decoration: none;
     color: var(--text-main);
+    flex-shrink: 0;
 }
 
-.navbar-logo-svg {
+.navbar-logo-img {
     width: 34px;
     height: 34px;
+    object-fit: cover;
+    border-radius: 8px;
     flex-shrink: 0;
 }
 
@@ -98,6 +103,7 @@ body {
 .menu-container {
     position: relative;
     z-index: 200;
+    flex-shrink: 0;
 }
 
 .hamburger-btn {
@@ -112,6 +118,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -127,8 +134,8 @@ body {
     background: var(--bg-main);
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-    width: 195px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+    width: 185px;
     overflow: hidden;
     flex-direction: column;
     z-index: 300;
@@ -138,27 +145,19 @@ body {
     display: flex;
 }
 
-.dropdown-section-label {
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--subtext);
-    padding: 7px 14px 3px;
-}
-
 .dropdown-item {
     padding: 10px 14px;
     font-size: 13px;
     font-weight: 600;
     color: var(--text-main);
-    background: none;
+    background-color: var(--bg-main);
     border: none;
     text-align: left;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;
     border-bottom: 1px solid var(--card-border);
 }
 
@@ -167,13 +166,8 @@ body {
 }
 
 .dropdown-item:hover {
-    background: var(--card-bg);
+    background-color: var(--card-bg);
     color: var(--card-text);
-}
-
-.dropdown-divider {
-    height: 1px;
-    background: var(--card-border);
 }
 
 /* STATISTIK DALAM MODAL TENTANG WEB */
@@ -594,23 +588,38 @@ body {
     body {
         padding: 14px 10px;
     }
-    .navbar-logo-svg {
-        width: 30px;
-        height: 30px;
+    .top-navbar {
+        min-height: 38px;
+    }
+    .navbar-logo-img {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
     }
     .navbar-brand-main {
-        font-size: 11.5px;
+        font-size: 11px;
     }
     .navbar-brand-sub {
-        font-size: 7.5px;
-        letter-spacing: 1.5px;
+        font-size: 7px;
+        letter-spacing: 1.4px;
     }
     .hamburger-btn {
         padding: 6px 11px;
         font-size: 12px;
     }
+    .settings-dropdown {
+        top: 38px;
+        width: 165px;
+    }
     .brand-title {
         font-size: 24px;
+    }
+    .category-grid {
+        gap: 10px;
+    }
+    .category-card {
+        padding: 14px 10px;
+        font-size: 13px;
     }
     .slider-container {
         padding: 0 22px;
